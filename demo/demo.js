@@ -1,6 +1,6 @@
 import { Grid, MuiThemeProvider, Button } from "@material-ui/core";
 import { createMuiTheme } from "@material-ui/core/styles";
-import React, { useState, Component } from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import MaterialTable from "../src";
 import gridData from "./data/data";
@@ -73,7 +73,7 @@ const App = () => {
           </Grid>
           {text}
           <button
-            onClick={() => this.tableRef.current.onAllSelected(true)}
+            onClick={() => tableRef.current.onAllSelected(true)}
             style={{ margin: 10 }}
           >
             Select

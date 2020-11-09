@@ -22,7 +22,6 @@ const MTablePaginationInner = props => {
     ...props.localization,
   };
 
-
   const handleFirstPageButtonClick = event => {
     onChangePage(event, 0);
   };
