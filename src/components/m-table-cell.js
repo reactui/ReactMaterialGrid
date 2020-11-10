@@ -213,12 +213,11 @@ const MTableCell = props => {
   }
 
   return (
-    {render}    
+    {render }    
   );
 }
 
 export default MTableCell;
-
 
 // export default class MTableCell extends React.Component {
 //   getRenderValue() {
