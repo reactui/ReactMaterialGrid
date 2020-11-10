@@ -395,7 +395,7 @@ const MTableHeader = props => {
 
   return (
     <>
-    {doRender} 
+    {doRender()} 
     </>  
   );
 }
