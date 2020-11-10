@@ -3,22 +3,37 @@ import * as React from "react";
 import PropTypes from "prop-types";
 /* eslint-enable no-unused-vars */
 
-class MTableActions extends React.Component {
-  render() {
-    if (this.props.actions) {
-      return this.props.actions.map((action, index) => (
-        <this.props.components.Action
+const MTableActions = props => {
+
+  const {
+    actions,
+    data,
+    size,
+    disabled,
+    components
+  } = props;
+
+  const render = () => {
+    if (actions) {
+      return actions.map((action, index) => (
+        <components.Action
           action={action}
           key={"action-" + index}
-          data={this.props.data}
-          size={this.props.size}
-          disabled={this.props.disabled}
+          data={data}
+          size={size}
+          disabled={disabled}
         />
       ));
     }
 
     return null;
   }
+
+  return (
+    <>
+    {render()}
+    </>
+  )
 }
 
 MTableActions.defaultProps = {
