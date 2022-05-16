@@ -314,8 +314,6 @@ export default class MaterialTable extends React.Component<IMaterialTableProps, 
         });
       }
 
-      console.log(calculatedProps.icons.Edit);
-
       if (calculatedProps.editable.onRowUpdate) {
         calculatedProps.actions.push((rowData: any) => ({
           icon: calculatedProps.icons.Edit,

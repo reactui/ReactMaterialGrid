@@ -4,37 +4,87 @@ import { createTheme } from "@material-ui/core/styles";
 import MaterialTable from './material-table'
 import {data, columns} from './data/data'
 import React from 'react';
-//import gridData from "./data/data";
+function App() {
+
+  let direction = "ltr"; // direction = 'rtl';
+  const theme = createTheme({
+    //direction: Direction.ltr,
+    palette: {
+      type: "light",
+    },
+  });
+
+  const darkTheme = createTheme({
+    //direction: Direction.ltr,
+    palette: {
+      type: "light",
+    },
+  });
+  
+  return (
+    <div style={{ maxWidth: "100%" }}>
+    
+
+    <MuiThemeProvider theme={theme}>
+       {Editable()}  
+    </MuiThemeProvider>
+    
+    <br /><br /><br />
+
+    <MuiThemeProvider theme={darkTheme}>
+      {ConditionalActions()} 
+    </MuiThemeProvider>  
+
+    <br /><br /><br />
+
+    <MuiThemeProvider theme={theme}>
+      {DetailPanelWithRowClick()}
+    </MuiThemeProvider>
+
+    </div>
+  );
+}
+
+function DetailPanelWithRowClick() {
+  return (
+    <MaterialTable
+      columns={columns}
+      data={data}
+      title="Detail Panel With RowClick Preview"
+      detailPanel={() => {
+        return (
+          <iframe
+            width="100%"
+            height="315"
+            src="https://www.youtube.com/embed/C0DPdy98e4c"
+            // frameborder="0"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            // allowfullscreen
+          />
+        )
+      }}
+      onRowClick={(event:any, rowDat:any, togglePanel:any) => togglePanel()}
+    />
+  )
+}
 
 function Editable() {
   const { useState } = React;
 
-  const [columns, setColumns] = useState([
-    { title: 'Name', field: 'name' },
-    { title: 'Surname', field: 'surname', initialEditValue: 'initial edit value' },
-    { title: 'Birth Year', field: 'birthYear', type: 'numeric' },
-    {
-      title: 'Birth Place',
-      field: 'birthCity',
-      lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
-    },
-  ]);
+  const [cols, setColumns] = useState(columns);
 
-  const [data, setData] = useState([
-    { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-    { name: 'Zerya Betül', surname: 'Baran', birthYear: 2017, birthCity: 34 },
-  ]);
+  const [theData, setData] = useState(data);
 
   return (
     <MaterialTable
       title="Editable Preview"
-      columns={columns}
-      data={data}
+      columns={cols}
+      data={theData}
       editable={{
         onRowAdd: newData =>
           new Promise<void>((resolve, reject) => {
             setTimeout(() => {
-              setData([...data, newData]);
+              setData([...theData, newData]);
               
               resolve();
             }, 1000)
@@ -42,7 +92,7 @@ function Editable() {
         onRowUpdate: (newData, oldData) =>
           new Promise<void>((resolve, reject) => {
             setTimeout(() => {
-              const dataUpdate = [...data];
+              const dataUpdate = [...theData];
               const index = oldData.tableData.id;
               dataUpdate[index] = newData;
               setData([...dataUpdate]);
@@ -53,7 +103,7 @@ function Editable() {
         onRowDelete: oldData =>
           new Promise<void>((resolve, reject) => {
             setTimeout(() => {
-              const dataDelete = [...data];
+              const dataDelete = [...theData];
               const index = oldData.tableData.id;
               dataDelete.splice(index, 1);
               setData([...dataDelete]);
@@ -97,83 +147,6 @@ function ConditionalActions() {
           disabled: rowData.birthYear < 2000
         })
       ]}
-    />
-  )
-}
-
-
-function App() {
-
-  let direction = "ltr"; // direction = 'rtl';
-  const theme = createTheme({
-    //direction: Direction.ltr,
-    palette: {
-      type: "dark",
-    },
-  });
-  
-  return (
-    <MuiThemeProvider theme={theme}>
-    
-    <div style={{ maxWidth: "100%" }}>
-        {/* <MaterialTable
-          title="Basic Tree Data Preview"
-          data={data}
-          columns={columns}
-          parentChildData={(row:any, rows:any) => rows.find((a: { id: any; })  => a.id === row.parentId)}
-          options={{
-            selection: true,
-          }}
-        /> */}
-
-        {Editable()}  
-
-        <br></br>
-
-        {ConditionalActions()}
-
-        <br></br>
-
-        {DetailPanelWithRowClick()}
-
-    </div>
-
-    </MuiThemeProvider>
-  );
-}
-
-function DetailPanelWithRowClick() {
-  return (
-    <MaterialTable
-      columns={[
-        { title: 'Name', field: 'name' },
-        { title: 'Surname', field: 'surname' },
-        { title: 'Birth Year', field: 'birthYear', type: 'numeric' },
-        {
-          title: 'Birth Place',
-          field: 'birthCity',
-          lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
-        },
-      ]}
-      data={[
-        { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-        { name: 'Zerya Betül', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-      ]}
-      title="Detail Panel With RowClick Preview"
-      actions={[]}
-      detailPanel={() => {
-        return (
-          <iframe
-            width="100%"
-            height="315"
-            src="https://www.youtube.com/embed/C0DPdy98e4c"
-            // frameborder="0"
-            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-            // allowfullscreen
-          />
-        )
-      }}
-      onRowClick={(event:any, rowDat:any, togglePanel:any) => togglePanel()}
     />
   )
 }
