@@ -210,6 +210,7 @@ export default function MTableBodyRow({
       );
 
     if (typeof detailPanel == "function") {
+      
       return (
         <TableCell
           size={size}

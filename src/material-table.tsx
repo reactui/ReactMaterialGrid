@@ -40,7 +40,11 @@ interface IMaterialTableProps {
   onRowUpdateCancelled?: any
   onSearchChange?: any,
   onSelectionChange?: any,
-  onTreeExpandChange?: any
+  onTreeExpandChange?: any,
+
+  actions?: any,
+  rowData?: any,
+  detailPanel?: any
 
   options?: {},
   parentChildData?: any,
