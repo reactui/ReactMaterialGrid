@@ -2,60 +2,50 @@ import Icon from "@material-ui/core/Icon";
 import IconButton from "@material-ui/core/IconButton";
 import Tooltip from "@material-ui/core/Tooltip";
 
-interface ActionProps {
-  action: Function | object;
-  data: object;
-  disabled: boolean;
-  size: number;
-}
 
-export default function MTableAction({
-  action,
-  data,
-  disabled,
-  size,
-}: ActionProps) {
-  const render = () => {
-    let result: any;
+const MTableAction = ({action, data, disabled, size}) => {
+
+  const render = () => {  
 
     if (typeof action === "function") {
-      result = action(data);
+      action = action(data);
       if (!action) {
         return null;
       }
     }
 
-    if (result.action) {
-      result = result.action(data);
+    if (action.action) {
+      action = action.action(data);
       if (!action) {
         return null;
       }
     }
 
-    if (result.hidden) {
+    if (action.hidden) {
       return null;
     }
 
-    const disabledResolved = result.disabled || disabled;
+    const disabledResolved = action.disabled || disabled;
 
-    const handleOnClick = (event: any) => {
-      if (result.onClick) {
-        result.onClick(event, data);
+    const handleOnClick = (event) => {
+      if (action.onClick) {
+        action.onClick(event, data);
         event.stopPropagation();
       }
     };
+
     const icon =
-      typeof result.icon === "string" ? (
-        <Icon {...result.iconProps}>{result.icon}</Icon>
-      ) : typeof result.icon === "function" ? (
-        result.icon({ ...result.iconProps, disabled: disabledResolved })
+      typeof action.icon === "string" ? (
+        <Icon {...action.iconProps}>{action.icon}</Icon>
+      ) : typeof action.icon === "function" ? (
+        action.icon({ ...action.iconProps, disabled: disabledResolved })
       ) : (
-        <result.icon />
+        <action.icon />
       );
 
     const button = (
       <IconButton
-        //size={size}
+        size={size}
         color="inherit"
         disabled={disabledResolved}
         onClick={handleOnClick}
@@ -64,18 +54,40 @@ export default function MTableAction({
       </IconButton>
     );
 
-    if (result.tooltip) {
+    if (action.tooltip) {
+      
       return disabled ? (
-        <Tooltip title={result.tooltip}>
+        <Tooltip title={action.tooltip}>
           <span>{button}</span>
         </Tooltip>
       ) : (
-        <Tooltip title={result.tooltip}>{button}</Tooltip>
+        <Tooltip title={action.tooltip}>{button}</Tooltip>
       );
     } else {
       return button;
     }
-  };
+  }
 
-  return <>{render()}</>;
+  return (
+    <>
+    {render()}
+    </>
+  );
 }
+
+// MTableAction.defaultProps = {
+//   action: {},
+//   data: {},
+// };
+
+// MTableAction.propTypes = {
+//   action: PropTypes.oneOfType([PropTypes.func, PropTypes.object]).isRequired,
+//   data: PropTypes.oneOfType([
+//     PropTypes.object,
+//     PropTypes.arrayOf(PropTypes.object),
+//   ]),
+//   disabled: PropTypes.bool,
+//   size: PropTypes.string,
+// };
+
+export default MTableAction;

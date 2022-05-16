@@ -5,87 +5,58 @@ import TableRow from "@material-ui/core/TableRow";
 import IconButton from "@material-ui/core/IconButton";
 import Icon from "@material-ui/core/Icon";
 import Tooltip from "@material-ui/core/Tooltip";
+import PropTypes, { bool, number } from "prop-types";
 import * as React from "react";
 import * as CommonValues from "../utils/common-values";
+/* eslint-enable no-unused-vars */
 
-interface TableBodyRowsProps {
-  actions: [];
-  icons: any;
-  index: number;
-  data: any; // object,
-  datailPanel: Function | [object | Function];
-  hasAnyEditingRow: boolean;
-  options: any; // object,
-  onRowSelected: Function;
-  path: [number];
-  treeDataMaxLevel: number;
-  getFieldValue: Function;
-  columns: [];
-  onToggleDetailPanel: Function;
-  onRowClick: Function;
-  onEditingApproved: Function;
-  onEditingCanceled: Function;
-  errorState: Object | boolean;
-  components: any;
-  detailPanel: any;
-  isTreeData: boolean;
-  onTreeExpandChanged: Function;
-  localization: any;
-  cellEditable: boolean;
-  onCellEditStarted: Function;
-  onCellEditFinished: Function;
-  scrollWidth: number;
-  level: number;
-}
+const MTableBodyRow = props => {
 
-export default function MTableBodyRow({
-  icons,
-  data,
-  columns,
-  components,
-  detailPanel,
-  getFieldValue,
-  isTreeData,
-  onRowClick,
-  onRowSelected,
-  onTreeExpandChanged,
-  onToggleDetailPanel,
-  onEditingCanceled,
-  onEditingApproved,
-  options,
-  hasAnyEditingRow,
-  treeDataMaxLevel,
-  localization,
-  actions,
-  errorState,
-  cellEditable,
-  onCellEditStarted,
-  onCellEditFinished,
-  scrollWidth,
-  level,
-  index,
-  path,
-  ...props
-}: TableBodyRowsProps) {
-  //const MTableBodyRow = props => {
-
+  const {
+    icons,
+    data,
+    columns,
+    components,
+    detailPanel,
+    getFieldValue,
+    isTreeData,
+    onRowClick,
+    onRowSelected,
+    onTreeExpandChanged,
+    onToggleDetailPanel,
+    onEditingCanceled,
+    onEditingApproved,
+    options,
+    hasAnyEditingRow,
+    treeDataMaxLevel,
+    localization,
+    actions,
+    errorState,
+    cellEditable,
+    onCellEditStarted,
+    onCellEditFinished,
+    scrollWidth,
+    level,
+    index,
+    path,
+    ...rowProps
+  } = props
+  
   const renderColumns = () => {
     const size = CommonValues.elementSize(props);
     const mapArr = columns
       .filter(
-        (columnDef: any) =>
+        (columnDef) =>
           !columnDef.hidden && !(columnDef.tableData.groupOrder > -1)
       )
-      .sort(
-        (a: any, b: any) => a.tableData.columnOrder - b.tableData.columnOrder
-      )
-      .map((columnDef: any, index) => {
+      .sort((a, b) => a.tableData.columnOrder - b.tableData.columnOrder)
+      .map((columnDef, index) => {
         const value = getFieldValue(data, columnDef);
 
         if (
           data.tableData.editCellList &&
           data.tableData.editCellList.find(
-            (c: any) => c.tableData.id === columnDef.tableData.id
+            (c) => c.tableData.id === columnDef.tableData.id
           )
         ) {
           return (
@@ -95,7 +66,12 @@ export default function MTableBodyRow({
               localization={localization}
               columnDef={columnDef}
               size={size}
-              key={"cell-" + data.tableData.id + "-" + columnDef.tableData.id}
+              key={
+                "cell-" +
+                data.tableData.id +
+                "-" +
+                columnDef.tableData.id
+              }
               rowData={data}
               cellEditable={cellEditable}
               onCellEditFinished={onCellEditFinished}
@@ -113,9 +89,16 @@ export default function MTableBodyRow({
                 ...columnDef,
               }}
               value={value}
-              key={"cell-" + data.tableData.id + "-" + columnDef.tableData.id}
+              key={
+                "cell-" +
+                data.tableData.id +
+                "-" +
+                columnDef.tableData.id
+              }
               rowData={data}
-              cellEditable={columnDef.editable !== "never" && !!cellEditable}
+              cellEditable={
+                columnDef.editable !== "never" && !!cellEditable
+              }
               onCellEditStarted={onCellEditStarted}
               scrollWidth={scrollWidth}
             />
@@ -123,7 +106,7 @@ export default function MTableBodyRow({
         }
       });
     return mapArr;
-  };
+  }
 
   const renderActions = () => {
     const size = CommonValues.elementSize(props);
@@ -152,7 +135,7 @@ export default function MTableBodyRow({
         </div>
       </TableCell>
     );
-  };
+  }
 
   const renderSelectionColumn = () => {
     let checkboxProps = options.selectionProps || {};
@@ -188,21 +171,23 @@ export default function MTableBodyRow({
           checked={data.tableData.checked === true}
           onClick={(e) => e.stopPropagation()}
           value={data.tableData.id.toString()}
-          onChange={(event) => onRowSelected(event, path, data)}
+          onChange={(event) =>
+            onRowSelected(event, path, data)
+          }
           style={styles}
           {...checkboxProps}
         />
       </TableCell>
     );
-  };
+  }
 
-  const rotateIconStyle = (isOpen: boolean) => ({
+  const rotateIconStyle = isOpen => ({
     transform: isOpen ? "rotate(90deg)" : "none",
   });
 
   const renderDetailPanelColumn = () => {
     const size = CommonValues.elementSize(props);
-    const CustomIcon = ({ icon, iconProps }: { icon: any; iconProps: any }) =>
+    const CustomIcon = ({ icon, iconProps }) =>
       typeof icon === "string" ? (
         <Icon {...iconProps}>{icon}</Icon>
       ) : (
@@ -210,7 +195,6 @@ export default function MTableBodyRow({
       );
 
     if (typeof detailPanel == "function") {
-      
       return (
         <TableCell
           size={size}
@@ -226,10 +210,15 @@ export default function MTableBodyRow({
             size={size}
             style={{
               transition: "all ease 200ms",
-              ...rotateIconStyle(data.tableData.showDetailPanel),
+              ...rotateIconStyle(
+                data.tableData.showDetailPanel
+              ),
             }}
             onClick={(event) => {
-              onToggleDetailPanel(path, detailPanel);
+              onToggleDetailPanel(
+                path,
+                detailPanel
+              );
               event.stopPropagation();
             }}
           >
@@ -248,7 +237,7 @@ export default function MTableBodyRow({
               ...options.detailPanelColumnStyle,
             }}
           >
-            {detailPanel.map((panel: any, index: number) => {
+            {detailPanel.map((panel, index) => {
               if (typeof panel === "function") {
                 panel = panel(data);
               }
@@ -290,7 +279,10 @@ export default function MTableBodyRow({
                   }}
                   disabled={panel.disabled}
                   onClick={(event) => {
-                    onToggleDetailPanel(path, panel.render);
+                    onToggleDetailPanel(
+                      path,
+                      panel.render
+                    );
                     event.stopPropagation();
                   }}
                 >
@@ -315,11 +307,14 @@ export default function MTableBodyRow({
         </TableCell>
       );
     }
-  };
+  }
 
   const renderTreeDataColumn = () => {
     const size = CommonValues.elementSize(props);
-    if (data.tableData.childRows && data.tableData.childRows.length > 0) {
+    if (
+      data.tableData.childRows &&
+      data.tableData.childRows.length > 0
+    ) {
       return (
         <TableCell
           size={size}
@@ -346,17 +341,25 @@ export default function MTableBodyRow({
     } else {
       return <TableCell padding="none" key={"key-tree-data-column"} />;
     }
-  };
+  }
 
-  const getStyle = (index: number, level: number) => {
-    let style: any = {
+  const getStyle = (index, level) => {
+    let style = {
       transition: "all ease 300ms",
+      cursor: "",
+      opacity: 0.5
     };
 
     if (typeof options.rowStyle === "function") {
       style = {
         ...style,
-        ...options.rowStyle(data, index, level, hasAnyEditingRow),
+        ...options.rowStyle(
+          data,
+          index,
+          level,
+          hasAnyEditingRow
+
+        ),
       };
     } else if (options.rowStyle) {
       style = {
@@ -370,13 +373,13 @@ export default function MTableBodyRow({
     }
 
     if (hasAnyEditingRow) {
-      style.opacity = style.opacity ? style.opacity : 0.2;
+      style.opacity = style.opacity > 0 ? style.opacity : 0.2;
     }
 
     return style;
-  };
+  }
 
-  const render = () => {
+  const render =() => {
     const size = CommonValues.elementSize(props);
     const renderColumnsRef = renderColumns();
     if (options.selection) {
@@ -385,7 +388,7 @@ export default function MTableBodyRow({
     if (
       actions &&
       actions.filter(
-        (a: any) => a.position === "row" || typeof a === "function"
+        (a) => a.position === "row" || typeof a === "function"
       ).length > 0
     ) {
       if (options.actionsColumnIndex === -1) {
@@ -418,8 +421,8 @@ export default function MTableBodyRow({
     }
 
     columns
-      .filter((columnDef: any) => columnDef.tableData.groupOrder > -1)
-      .forEach((columnDef: any) => {
+      .filter((columnDef) => columnDef.tableData.groupOrder > -1)
+      .forEach((columnDef) => {
         renderColumnsRef.splice(
           0,
           0,
@@ -431,16 +434,17 @@ export default function MTableBodyRow({
         );
       });
 
+
     return (
       <>
         <TableRow
           selected={hasAnyEditingRow}
-          {...props}
+          {...rowProps}
           hover={onRowClick ? true : false}
           style={getStyle(index, level)}
           onClick={(event) => {
             onRowClick &&
-              onRowClick(event, data, (panelIndex: number) => {
+              onRowClick(event, data, (panelIndex) => {
                 let panel = detailPanel;
                 if (Array.isArray(panel)) {
                   panel = panel[panelIndex || 0];
@@ -455,26 +459,27 @@ export default function MTableBodyRow({
         >
           {renderColumnsRef}
         </TableRow>
-        {data.tableData && data.tableData.showDetailPanel && (
-          <TableRow
-          // selected={index % 2 === 0}
-          >
-            <TableCell
-              size={size}
-              colSpan={renderColumnsRef.length}
-              padding="none"
+        {data.tableData &&
+          data.tableData.showDetailPanel && (
+            <TableRow
+            // selected={index % 2 === 0}
             >
-              {data.tableData.showDetailPanel(data)}
-            </TableCell>
-          </TableRow>
-        )}
+              <TableCell
+                size={size}
+                colSpan={renderColumnsRef.length}
+                padding="none"
+              >
+                {data.tableData.showDetailPanel(data)}
+              </TableCell>
+            </TableRow>
+          )}
         {data.tableData.childRows &&
           data.tableData.isTreeExpanded &&
-          data.tableData.childRows.map((data: any, index: number) => {
+          data.tableData.childRows.map((data, index) => {
             if (data.tableData.editing) {
               return (
                 <components.EditRow
-                  columns={columns.filter((columnDef: any) => {
+                  columns={columns.filter((columnDef) => {
                     return !columnDef.hidden;
                   })}
                   components={components}
@@ -515,40 +520,44 @@ export default function MTableBodyRow({
           })}
       </>
     );
-  };
+  }
 
-  return <>{render()}</>;
+  return (
+    <>
+    {render()}
+    </>
+  );
 }
 
-// export default MTableBodyRow;
+export default MTableBodyRow;
 
-// MTableBodyRow.defaultProps = {
-//   actions: [],
-//   index: 0,
-//   data: {},
-//   options: {},
-//   path: [],
-// };
+MTableBodyRow.defaultProps = {
+  actions: [],
+  index: 0,
+  data: {},
+  options: {},
+  path: [],
+};
 
-// MTableBodyRow.propTypes = {
-//   actions: PropTypes.array,
-//   icons: PropTypes.any.isRequired,
-//   index: PropTypes.number.isRequired,
-//   data: PropTypes.object.isRequired,
-//   detailPanel: PropTypes.oneOfType([
-//     PropTypes.func,
-//     PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.object, PropTypes.func])),
-//   ]),
-//   hasAnyEditingRow: PropTypes.bool,
-//   options: PropTypes.object.isRequired,
-//   onRowSelected: PropTypes.func,
-//   path: PropTypes.arrayOf(PropTypes.number),
-//   treeDataMaxLevel: PropTypes.number,
-//   getFieldValue: PropTypes.func.isRequired,
-//   columns: PropTypes.array,
-//   onToggleDetailPanel: PropTypes.func.isRequired,
-//   onRowClick: PropTypes.func,
-//   onEditingApproved: PropTypes.func,
-//   onEditingCanceled: PropTypes.func,
-//   errorState: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-// };
+MTableBodyRow.propTypes = {
+  actions: PropTypes.array,
+  icons: PropTypes.any.isRequired,
+  index: PropTypes.number.isRequired,
+  data: PropTypes.object.isRequired,
+  detailPanel: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.object, PropTypes.func])),
+  ]),
+  hasAnyEditingRow: PropTypes.bool,
+  options: PropTypes.object.isRequired,
+  onRowSelected: PropTypes.func,
+  path: PropTypes.arrayOf(PropTypes.number),
+  treeDataMaxLevel: PropTypes.number,
+  getFieldValue: PropTypes.func.isRequired,
+  columns: PropTypes.array,
+  onToggleDetailPanel: PropTypes.func.isRequired,
+  onRowClick: PropTypes.func,
+  onEditingApproved: PropTypes.func,
+  onEditingCanceled: PropTypes.func,
+  errorState: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+};

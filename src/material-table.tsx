@@ -78,10 +78,13 @@ export default class MaterialTable extends React.Component<IMaterialTableProps, 
    
   dataManager = new DataManager();
   tableContainerDiv: any;
+  props: any;
 
   constructor(props:any) {
     super(props);
     
+    this.props = props;
+
     const calculatedProps = this.getProps(props);
     this.setDataManagerFields(calculatedProps, true);
     const renderState = this.dataManager.getRenderState();
@@ -310,6 +313,9 @@ export default class MaterialTable extends React.Component<IMaterialTableProps, 
           },
         });
       }
+
+      console.log(calculatedProps.icons.Edit);
+
       if (calculatedProps.editable.onRowUpdate) {
         calculatedProps.actions.push((rowData: any) => ({
           icon: calculatedProps.icons.Edit,
@@ -383,7 +389,7 @@ export default class MaterialTable extends React.Component<IMaterialTableProps, 
         });
       }
     }
-
+    
     return calculatedProps;
   }
 
@@ -800,46 +806,48 @@ export default class MaterialTable extends React.Component<IMaterialTableProps, 
   };
 
   renderFooter = () => {
-    const props = this.getProps();
-    if (props.options.paging) {
+    const localProps = this.getProps();
+
+    if (localProps.options.paging) {
       const localization = {
         ...this.defaultProps.localization.pagination,
+        //localization.pagination
         //...this.props.localization.pagination,
       };
 
-      const isOutsidePageNumbers = this.isOutsidePageNumbers(props);
+      const isOutsidePageNumbers = this.isOutsidePageNumbers(localProps);
       const currentPage = isOutsidePageNumbers
         ? Math.min(
-            props.page,
-            Math.floor(props.totalCount / this.state.pageSize)
+            localProps.page,
+            Math.floor(localProps.totalCount / this.state.pageSize)
           )
         : this.state.currentPage;
       const totalCount = isOutsidePageNumbers
-        ? props.totalCount
+        ? localProps.totalCount
         : this.state.data.length;
 
       return (
         <Table>
           <TableFooter style={{ display: "grid" }}>
             <TableRow>
-              <props.components.Pagination
+              <localProps.components.Pagination
                 classes={{
-                  root: props.classes.paginationRoot,
-                  toolbar: props.classes.paginationToolbar,
-                  caption: props.classes.paginationCaption,
-                  selectRoot: props.classes.paginationSelectRoot,
+                  root: localProps.classes.paginationRoot,
+                  toolbar: localProps.classes.paginationToolbar,
+                  caption: localProps.classes.paginationCaption,
+                  selectRoot: localProps.classes.paginationSelectRoot,
                 }}
                 style={{
-                  float: props.theme.direction === "rtl" ? "" : "right",
+                  float: localProps.theme.direction === "rtl" ? "" : "right",
                   overflowX: "auto",
                 }}
                 colSpan={3}
                 count={
                   this.isRemoteData() ? this.state.query.totalCount : totalCount
                 }
-                icons={props.icons}
+                icons={localProps.icons}
                 rowsPerPage={this.state.pageSize}
-                rowsPerPageOptions={props.options.pageSizeOptions}
+                rowsPerPageOptions={localProps.options.pageSizeOptions}
                 SelectProps={{
                   renderValue: (value: any) => (
                     <div style={{ padding: "0px 5px" }}>
@@ -851,22 +859,22 @@ export default class MaterialTable extends React.Component<IMaterialTableProps, 
                 onChangePage={this.onChangePage}
                 onChangeRowsPerPage={this.onChangeRowsPerPage}
                 ActionsComponent={(subProps:any) =>
-                  props.options.paginationType === "normal" ? (
+                  localProps.options.paginationType === "normal" ? (
                     <MTablePagination
                       {...subProps}
-                      icons={props.icons}
+                      icons={localProps.icons}
                       localization={localization}
                       showFirstLastPageButtons={
-                        props.options.showFirstLastPageButtons
+                        localProps.options.showFirstLastPageButtons
                       }
                     />
                   ) : (
                     <MTableSteppedPagination
                       {...subProps}
-                      icons={props.icons}
+                      icons={localProps.icons}
                       localization={localization}
                       showFirstLastPageButtons={
-                        props.options.showFirstLastPageButtons
+                        localProps.options.showFirstLastPageButtons
                       }
                     />
                   )

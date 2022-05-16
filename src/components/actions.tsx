@@ -14,6 +14,7 @@ export default function MTableActions({
   components,
 }: ActionProps) {
   const render = () => {
+    console.log(actions);
     if (actions) {
       return actions.map((action: any, index: number) => (
         <components.Action
