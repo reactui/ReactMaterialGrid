@@ -22,7 +22,7 @@ interface ITableEditCellState {
   isLoading: boolean;
   theValue: any;
 }
- function MTableEditCell({
+function MTableEditCell({
   cellEditable,
   columnDef,
   components,

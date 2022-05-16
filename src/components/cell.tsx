@@ -1,13 +1,12 @@
-
 import TableCell from "@material-ui/core/TableCell";
 import PropTypes from "prop-types";
 import parseISO from "date-fns/parseISO";
 import * as CommonValues from "../utils/common-values";
 
-const isoDateRegex = /^\d{4}-(0[1-9]|1[0-2])-([12]\d|0[1-9]|3[01])([T\s](([01]\d|2[0-3])\:[0-5]\d|24\:00)(\:[0-5]\d([\.,]\d+)?)?([zZ]|([\+-])([01]\d|2[0-3])\:?([0-5]\d)?)?)?$/;
+const isoDateRegex =
+  /^\d{4}-(0[1-9]|1[0-2])-([12]\d|0[1-9]|3[01])([T\s](([01]\d|2[0-3])\:[0-5]\d|24\:00)(\:[0-5]\d([\.,]\d+)?)?([zZ]|([\+-])([01]\d|2[0-3])\:?([0-5]\d)?)?)?$/;
 
 const MTableCell = (props: any) => {
-
   const {
     columnDef,
     value,
@@ -16,13 +15,12 @@ const MTableCell = (props: any) => {
     scrollWidth,
     size,
     children,
-    style
+    style,
   } = props;
 
   const getRenderValue = () => {
     const dateLocale =
-      columnDef.dateSetting &&
-      columnDef.dateSetting.locale
+      columnDef.dateSetting && columnDef.dateSetting.locale
         ? columnDef.dateSetting.locale
         : undefined;
     if (
@@ -69,17 +67,14 @@ const MTableCell = (props: any) => {
         return value;
       }
     } else if (columnDef.type === "currency") {
-      return getCurrencyValue(
-        columnDef.currencySetting,
-        value
-      );
+      return getCurrencyValue(columnDef.currencySetting, value);
     } else if (typeof value === "boolean") {
       // To avoid forwardref boolean children.
       return value.toString();
     }
 
     return value;
-  }
+  };
 
   const getEmptyValue = (emptyValue: any) => {
     if (typeof emptyValue === "function") {
@@ -87,7 +82,7 @@ const MTableCell = (props: any) => {
     } else {
       return emptyValue;
     }
-  }
+  };
 
   const getCurrencyValue = (currencySetting: any, value: any) => {
     if (currencySetting !== undefined) {
@@ -115,9 +110,9 @@ const MTableCell = (props: any) => {
         currency: "USD",
       }).format(value !== undefined ? value : 0);
     }
-  }
+  };
 
-  const handleClickCell = (e:any) => {
+  const handleClickCell = (e: any) => {
     if (columnDef.disableClick) {
       e.stopPropagation();
     }
@@ -138,7 +133,7 @@ const MTableCell = (props: any) => {
       fontSize: "inherit",
       fontFamily: "inherit",
       fontWeight: "inherit",
-      cursor: ""
+      cursor: "",
     };
 
     if (typeof columnDef.cellStyle === "function") {
@@ -206,14 +201,10 @@ const MTableCell = (props: any) => {
         {renderValue}
       </TableCell>
     );
-  }
+  };
 
-  return (
-    <>
-    {render()}
-    </>    
-  );
-}
+  return <>{render()}</>;
+};
 
 export default MTableCell;
 

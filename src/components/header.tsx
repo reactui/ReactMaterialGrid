@@ -11,7 +11,6 @@ import * as CommonValues from "../utils/common-values";
 import equal from "fast-deep-equal";
 
 function MTableHeader(props: any) {
-
   const {
     hasDetailPanel,
     detailPanelColumnAlignment,

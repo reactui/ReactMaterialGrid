@@ -178,7 +178,7 @@ export default function MTableFilterRow(props: ITableFilterRow) {
       clearable: true,
     };
 
-    let dateInputElement:any = null;
+    let dateInputElement: any = null;
     if (columnDef.type === "date") {
       dateInputElement = <DatePicker {...pickerProps} />;
     } else if (columnDef.type === "datetime") {

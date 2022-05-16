@@ -1,4 +1,3 @@
-
 import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import IconButton from "@material-ui/core/IconButton";
@@ -16,13 +15,11 @@ import classNames from "classnames";
 // @ts-ignore
 import { CsvBuilder } from "filefy";
 
-
 import PropTypes, { oneOf } from "prop-types";
 import "jspdf-autotable";
 import * as React from "react";
 import { useState } from "react";
 const jsPDF = typeof window !== "undefined" ? require("jspdf").jsPDF : null;
-
 
 function MTableToolbar(props: any) {
   const [state, setState] = useState({

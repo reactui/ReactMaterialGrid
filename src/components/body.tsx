@@ -65,11 +65,11 @@ export default function MTableBody(props: ITableBodyProps) {
     const localizationResolved = {
       ...defaultProps.localization,
       ...props.localization,
-    };    
+    };
 
     if (props.options.showEmptyDataSourceMessage && renderData.length === 0) {
       let addColumn = 0;
-      
+
       if (props.options.selection) {
         addColumn++;
       }
@@ -128,7 +128,6 @@ export default function MTableBody(props: ITableBodyProps) {
   };
 
   const renderUngroupedRows = (renderData: any) => {
-
     return renderData.map((data: any, index: number) => {
       if (data.tableData.editing || props.bulkEditOpen) {
         return (
@@ -239,111 +238,107 @@ export default function MTableBody(props: ITableBodyProps) {
   };
 
   //const render = () => {
-    let renderData = props.renderData;
-    const groups = props.columns
-      .filter((col: any) => col.tableData.groupOrder > -1)
-      .sort(
-        (col1: any, col2: any) =>
-          col1.tableData.groupOrder - col2.tableData.groupOrder
-      );
-
-    let emptyRowCount = 0;
-    if (props.options.paging) {
-      emptyRowCount = props.pageSize - renderData.length;
-    }
-
-    return (
-      <TableBody>
-        {props.options.filtering && (
-          <props.components.FilterRow
-            columns={props.columns.filter(
-              (columnDef: any) => !columnDef.hidden
-            )}
-            icons={props.icons}
-            hasActions={
-              props.actions.filter(
-                (a: any) => a.position === "row" || typeof a === "function"
-              ).length > 0
-            }
-            actionsColumnIndex={props.options.actionsColumnIndex}
-            onFilterChanged={props.onFilterChanged}
-            selection={props.options.selection}
-            localization={{
-              ...defaultProps.localization.filterRow,
-              ...props.localization.filterRow,
-              dateTimePickerLocalization:
-                props.localization.dateTimePickerLocalization,
-            }}
-            hasDetailPanel={!!props.detailPanel}
-            detailPanelColumnAlignment={
-              props.options.detailPanelColumnAlignment
-            }
-            isTreeData={props.isTreeData}
-            filterCellStyle={props.options.filterCellStyle}
-            filterRowStyle={props.options.filterRowStyle}
-            hideFilterIcons={props.options.hideFilterIcons}
-            scrollWidth={props.scrollWidth}
-          />
-        )}
-        {props.showAddRow && props.options.addRowPosition === "first" && (
-          <props.components.EditRow
-            columns={props.columns.filter((columnDef: any) => {
-              return !columnDef.hidden;
-            })}
-            data={props.initialFormData}
-            components={props.components}
-            errorState={props.errorState}
-            icons={props.icons}
-            key="key-add-row"
-            mode="add"
-            localization={{
-              ...defaultProps.localization.editRow,
-              ...props.localization.editRow,
-              dateTimePickerLocalization:
-                props.localization.dateTimePickerLocalization,
-            }}
-            options={props.options}
-            isTreeData={props.isTreeData}
-            detailPanel={props.detailPanel}
-            onEditingCanceled={props.onEditingCanceled}
-            onEditingApproved={props.onEditingApproved}
-            getFieldValue={props.getFieldValue}
-            scrollWidth={props.scrollWidth}
-          />
-        )}
-
-        {groups.length > 0
-          ? renderGroupedRows(groups, renderData)
-          : renderUngroupedRows(renderData)}
-
-        {props.showAddRow && props.options.addRowPosition === "last" && (
-          <props.components.EditRow
-            columns={props.columns.filter((columnDef: any) => {
-              return !columnDef.hidden;
-            })}
-            data={props.initialFormData}
-            components={props.components}
-            errorState={props.errorState}
-            icons={props.icons}
-            key="key-add-row"
-            mode="add"
-            localization={{
-              ...defaultProps.localization.editRow,
-              ...props.localization.editRow,
-              dateTimePickerLocalization:
-                props.localization.dateTimePickerLocalization,
-            }}
-            options={props.options}
-            isTreeData={props.isTreeData}
-            detailPanel={props.detailPanel}
-            onEditingCanceled={props.onEditingCanceled}
-            onEditingApproved={props.onEditingApproved}
-            getFieldValue={props.getFieldValue}
-            scrollWidth={props.scrollWidth}
-          />
-        )}
-        {renderEmpty(emptyRowCount, renderData)}
-      </TableBody>
+  let renderData = props.renderData;
+  const groups = props.columns
+    .filter((col: any) => col.tableData.groupOrder > -1)
+    .sort(
+      (col1: any, col2: any) =>
+        col1.tableData.groupOrder - col2.tableData.groupOrder
     );
+
+  let emptyRowCount = 0;
+  if (props.options.paging) {
+    emptyRowCount = props.pageSize - renderData.length;
+  }
+
+  return (
+    <TableBody>
+      {props.options.filtering && (
+        <props.components.FilterRow
+          columns={props.columns.filter((columnDef: any) => !columnDef.hidden)}
+          icons={props.icons}
+          hasActions={
+            props.actions.filter(
+              (a: any) => a.position === "row" || typeof a === "function"
+            ).length > 0
+          }
+          actionsColumnIndex={props.options.actionsColumnIndex}
+          onFilterChanged={props.onFilterChanged}
+          selection={props.options.selection}
+          localization={{
+            ...defaultProps.localization.filterRow,
+            ...props.localization.filterRow,
+            dateTimePickerLocalization:
+              props.localization.dateTimePickerLocalization,
+          }}
+          hasDetailPanel={!!props.detailPanel}
+          detailPanelColumnAlignment={props.options.detailPanelColumnAlignment}
+          isTreeData={props.isTreeData}
+          filterCellStyle={props.options.filterCellStyle}
+          filterRowStyle={props.options.filterRowStyle}
+          hideFilterIcons={props.options.hideFilterIcons}
+          scrollWidth={props.scrollWidth}
+        />
+      )}
+      {props.showAddRow && props.options.addRowPosition === "first" && (
+        <props.components.EditRow
+          columns={props.columns.filter((columnDef: any) => {
+            return !columnDef.hidden;
+          })}
+          data={props.initialFormData}
+          components={props.components}
+          errorState={props.errorState}
+          icons={props.icons}
+          key="key-add-row"
+          mode="add"
+          localization={{
+            ...defaultProps.localization.editRow,
+            ...props.localization.editRow,
+            dateTimePickerLocalization:
+              props.localization.dateTimePickerLocalization,
+          }}
+          options={props.options}
+          isTreeData={props.isTreeData}
+          detailPanel={props.detailPanel}
+          onEditingCanceled={props.onEditingCanceled}
+          onEditingApproved={props.onEditingApproved}
+          getFieldValue={props.getFieldValue}
+          scrollWidth={props.scrollWidth}
+        />
+      )}
+
+      {groups.length > 0
+        ? renderGroupedRows(groups, renderData)
+        : renderUngroupedRows(renderData)}
+
+      {props.showAddRow && props.options.addRowPosition === "last" && (
+        <props.components.EditRow
+          columns={props.columns.filter((columnDef: any) => {
+            return !columnDef.hidden;
+          })}
+          data={props.initialFormData}
+          components={props.components}
+          errorState={props.errorState}
+          icons={props.icons}
+          key="key-add-row"
+          mode="add"
+          localization={{
+            ...defaultProps.localization.editRow,
+            ...props.localization.editRow,
+            dateTimePickerLocalization:
+              props.localization.dateTimePickerLocalization,
+          }}
+          options={props.options}
+          isTreeData={props.isTreeData}
+          detailPanel={props.detailPanel}
+          onEditingCanceled={props.onEditingCanceled}
+          onEditingApproved={props.onEditingApproved}
+          getFieldValue={props.getFieldValue}
+          scrollWidth={props.scrollWidth}
+        />
+      )}
+      {renderEmpty(emptyRowCount, renderData)}
+    </TableBody>
+  );
   //};
 }

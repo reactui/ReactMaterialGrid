@@ -108,7 +108,7 @@ export default function MTableGroupRow(props: any) {
       }
     }
 
-    const freeCells:any = [];
+    const freeCells: any = [];
     for (let i = 0; i < props.level; i++) {
       freeCells.push(<TableCell padding="checkbox" key={i} />);
     }

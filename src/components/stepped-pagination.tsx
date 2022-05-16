@@ -5,25 +5,24 @@ import Tooltip from "@material-ui/core/Tooltip";
 import Hidden from "@material-ui/core/Hidden";
 import Button from "@material-ui/core/Button";
 
-function MTablePaginationInner(props:any) {
-
-  const handleFirstPageButtonClick = (event:any) => {
+function MTablePaginationInner(props: any) {
+  const handleFirstPageButtonClick = (event: any) => {
     props.onChangePage(event, 0);
   };
 
-  const handleBackButtonClick = (event:any) => {
+  const handleBackButtonClick = (event: any) => {
     props.onChangePage(event, props.page - 1);
   };
 
-  const handleNextButtonClick = (event:any) => {
+  const handleNextButtonClick = (event: any) => {
     props.onChangePage(event, props.page + 1);
   };
 
-  const handleNumberButtonClick = (number:any) => (event:any) => {
+  const handleNumberButtonClick = (number: any) => (event: any) => {
     props.onChangePage(event, number);
   };
 
-  const handleLastPageButtonClick = (event:any) => {
+  const handleLastPageButtonClick = (event: any) => {
     props.onChangePage(
       event,
       Math.max(0, Math.ceil(props.count / props.rowsPerPage) - 1)
@@ -31,7 +30,7 @@ function MTablePaginationInner(props:any) {
   };
 
   const renderPagesButton = (start: any, end: any) => {
-    const buttons:any = [];
+    const buttons: any = [];
 
     for (let p = start; p <= end; p++) {
       const buttonVariant = p === props.page ? "contained" : "text";
@@ -56,7 +55,7 @@ function MTablePaginationInner(props:any) {
     }
 
     return <span>{buttons}</span>;
-  }
+  };
 
   const render = () => {
     const {
@@ -108,9 +107,7 @@ function MTablePaginationInner(props:any) {
           </span>
         </Tooltip>
         {/* @ts-ignore */}
-        <Hidden smDown={true}>
-          {renderPagesButton(pageStart, pageEnd)}
-        </Hidden>
+        <Hidden smDown={true}>{renderPagesButton(pageStart, pageEnd)}</Hidden>
         <Tooltip title={localization.nextTooltip}>
           <span>
             <IconButton
@@ -141,7 +138,7 @@ function MTablePaginationInner(props:any) {
         )}
       </div>
     );
-  }
+  };
 }
 
 const actionsStyles = (theme: any) => ({
