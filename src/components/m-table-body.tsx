@@ -112,7 +112,6 @@ export default function MTableBody(props: ITableBodyProps) {
         </TableRow>
       );
     } else if (props.options.emptyRowsWhenPaging) {
-      console.log("emptty", emptyRowCount);
       return (
         <React.Fragment>
           {[...Array(emptyRowCount)].map((r, index) => (
@@ -129,8 +128,6 @@ export default function MTableBody(props: ITableBodyProps) {
   };
 
   const renderUngroupedRows = (renderData: any) => {
-
-    console.log("Render ugnrouped rows", renderData)
 
     return renderData.map((data: any, index: number) => {
       if (data.tableData.editing || props.bulkEditOpen) {

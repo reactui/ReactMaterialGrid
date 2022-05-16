@@ -430,9 +430,9 @@ export default class DataManager {
     const nextColumn = this.columns.find((c) => c.tableData.id === id + 1);
     if (!nextColumn) return;
 
-    // console.log("S i: " + column.tableData.initialWidth);
-    // console.log("S a: " + column.tableData.additionalWidth);
-    // console.log("S w: " + column.tableData.width);
+    // this.defaultProps("S i: " + column.tableData.initialWidth);
+    // this.defaultProps("S a: " + column.tableData.additionalWidth);
+    // this.defaultProps("S w: " + column.tableData.width);
 
     column.tableData.additionalWidth = additionalWidth;
     column.tableData.width = `calc(${column.tableData.initialWidth} + ${column.tableData.additionalWidth}px)`;
@@ -440,9 +440,9 @@ export default class DataManager {
     // nextColumn.tableData.additionalWidth = -1 * additionalWidth;
     // nextColumn.tableData.width = `calc(${nextColumn.tableData.initialWidth} + ${nextColumn.tableData.additionalWidth}px)`;
 
-    // console.log("F i: " + column.tableData.initialWidth);
-    // console.log("F a: " + column.tableData.additionalWidth);
-    // console.log("F w: " + column.tableData.width);
+    // this.defaultProps("F i: " + column.tableData.initialWidth);
+    // this.defaultProps("F a: " + column.tableData.additionalWidth);
+    // this.defaultProps("F w: " + column.tableData.width);
   }
 
   expandTreeForNodes = (data: any) => {
