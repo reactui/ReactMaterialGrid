@@ -1,7 +1,4 @@
-import Icon from "@material-ui/core/Icon";
-import IconButton from "@material-ui/core/IconButton";
-import Tooltip from "@material-ui/core/Tooltip";
-
+import { Icon, IconButton, Tooltip}  from "@mui/material";
 
 const MTableAction = ({action, data, disabled, size}) => {
 
@@ -74,20 +71,5 @@ const MTableAction = ({action, data, disabled, size}) => {
     </>
   );
 }
-
-// MTableAction.defaultProps = {
-//   action: {},
-//   data: {},
-// };
-
-// MTableAction.propTypes = {
-//   action: PropTypes.oneOfType([PropTypes.func, PropTypes.object]).isRequired,
-//   data: PropTypes.oneOfType([
-//     PropTypes.object,
-//     PropTypes.arrayOf(PropTypes.object),
-//   ]),
-//   disabled: PropTypes.bool,
-//   size: PropTypes.string,
-// };
 
 export default MTableAction;
