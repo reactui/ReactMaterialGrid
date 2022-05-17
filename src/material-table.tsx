@@ -1,12 +1,6 @@
-
-import Table from "@material-ui/core/Table";
-import TableFooter from "@material-ui/core/TableFooter";
-import TableRow from "@material-ui/core/TableRow";
-import LinearProgress from "@material-ui/core/LinearProgress";
-
+import {Table, TableFooter, TableRow, LinearProgress, CircularProgress, Icon, Paper, TablePagination} from "@mui/material";
 // @ts-ignore
 import DoubleScrollbar from "react-double-scrollbar";
-
 import { MTablePagination, MTableSteppedPagination } from "./components";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import DataManager from "./utils/data-manager";
@@ -14,10 +8,6 @@ import { debounce } from "debounce";
 import equal from "fast-deep-equal";
 import { withStyles } from "@material-ui/core";
 import * as CommonValues from "./utils/common-values";
-import CircularProgress from "@material-ui/core/CircularProgress";
-import Icon from "@material-ui/core/Icon";
-import Paper from "@material-ui/core/Paper";
-import TablePagination from "@material-ui/core/TablePagination";
 import * as MComponents from "./components";
 import { fade } from "@material-ui/core/styles/colorManipulator";
 import React from "react";

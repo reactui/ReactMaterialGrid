@@ -1,9 +1,6 @@
-import IconButton from "@material-ui/core/IconButton";
-import withStyles from "@material-ui/core/styles/withStyles";
-import Tooltip from "@material-ui/core/Tooltip";
-import Typography from "@material-ui/core/Typography";
-import PropTypes from "prop-types";
-import * as React from "react";
+
+import { withStyles } from "@material-ui/core/styles";
+import { IconButton, Tooltip, Typography } from "@mui/material";
 
 function MTablePaginationInner(props: any) {
   const {
@@ -132,17 +129,6 @@ function MTablePaginationInner(props: any) {
   );
 }
 
-// MTablePaginationInner.propTypes = {
-//   onChangePage: PropTypes.func,
-//   page: PropTypes.number,
-//   count: PropTypes.number,
-//   rowsPerPage: PropTypes.number,
-//   classes: PropTypes.object,
-//   localization: PropTypes.object,
-//   theme: PropTypes.any,
-//   showFirstLastPageButtons: PropTypes.bool,
-// };
-
 const defaultProps = {
   showFirstLastPageButtons: true,
   localization: {
@@ -167,5 +153,6 @@ const actionsStyles = (theme: any) => ({
 const MTablePagination = withStyles(actionsStyles, { withTheme: true })(
   MTablePaginationInner
 );
+
 
 export default MTablePagination;

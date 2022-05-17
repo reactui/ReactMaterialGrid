@@ -1,14 +1,7 @@
-import React, { useEffect, useLayoutEffect, useState, useRef } from "react";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import TableCell from "@material-ui/core/TableCell";
-import TableSortLabel from "@material-ui/core/TableSortLabel";
-import Checkbox from "@material-ui/core/Checkbox";
-import withStyles from "@material-ui/core/styles/withStyles";
+import { TableHead, TableRow, TableCell, TableSortLabel, Checkbox, Tooltip } from "@mui/material"
+import { useEffect, useState, useRef } from "react";
 import { Draggable } from "react-beautiful-dnd";
-import { Tooltip } from "@material-ui/core";
-import * as CommonValues from "../utils/common-values";
-import equal from "fast-deep-equal";
+import { reducePercentsInCalc, actionsColumnWidth, selectionMaxWidth } from "../utils/common-values"
 
 function MTableHeader(props: any) {
   const {
@@ -102,7 +95,7 @@ function MTableHeader(props: any) {
   };
 
   const getCellStyle = (columnDef: any) => {
-    const width = CommonValues.reducePercentsInCalc(
+    const width = reducePercentsInCalc(
       columnDef.tableData.width,
       scrollWidth
     );
@@ -248,7 +241,7 @@ function MTableHeader(props: any) {
       ...defaultProps.localization,
       ...localization,
     };
-    const width = CommonValues.actionsColumnWidth(props);
+    const width = actionsColumnWidth(props);
     return (
       <TableCell
         key="key-actions-column"
@@ -269,7 +262,7 @@ function MTableHeader(props: any) {
   };
 
   const renderSelectionHeader = () => {
-    const selectionWidth = CommonValues.selectionMaxWidth(
+    const selectionWidth = selectionMaxWidth(
       props,
       treeDataMaxLevel
     );
@@ -300,7 +293,7 @@ function MTableHeader(props: any) {
       <TableCell
         padding="none"
         key="key-detail-panel-column"
-        className={classes.header}
+        //className={classes.header}
         style={{ ...headerStyle }}
       />
     );
@@ -399,4 +392,6 @@ export const styles = (theme: any) => ({
 });
 
 // @ts-ignore
-export default withStyles(styles, { withTheme: true })(MTableHeader);
+//export default withStyles(styles, { withTheme: true })(MTableHeader);
+
+export default MTableHeader;

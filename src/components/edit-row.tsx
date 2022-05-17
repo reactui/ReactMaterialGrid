@@ -1,11 +1,7 @@
-/* eslint-disable no-unused-vars */
-import TableCell from "@material-ui/core/TableCell";
-import TableRow from "@material-ui/core/TableRow";
-import Typography from "@material-ui/core/Typography";
+import { TableCell, TableRow, Typography }  from "@mui/material";
 import { useState } from "react";
 import { byString, setByString } from "../utils";
 import * as CommonValues from "../utils/common-values";
-
 interface ITableEditRow {
   data: any;
   columnDef: any;
@@ -343,28 +339,6 @@ export default function MTableEditRow(props: ITableEditRow) {
         );
       });
 
-    // const {
-    //   detailPanel,
-    //   isTreeData,
-    //   onRowClick,
-    //   onRowSelected,
-    //   onTreeExpandChanged,
-    //   onToggleDetailPanel,
-    //   onEditingApproved,
-    //   onEditingCanceled,
-    //   getFieldValue,
-    //   components,
-    //   icons,
-    //   columns: columnsProp, // renamed to not conflict with definition above
-    //   localization: localizationProp, // renamed to not conflict with definition above
-    //   options,
-    //   actions,
-    //   errorState,
-    //   onBulkEditRowChanged,
-    //   scrollWidth,
-    //   ...rowProps
-    // } = props;
-
     return (
       <>
         <TableRow
@@ -392,25 +366,3 @@ export default function MTableEditRow(props: ITableEditRow) {
     onBulkEditRowChanged: () => {},
   };
 }
-
-// MTableEditRow.propTypes = {
-//   actions: PropTypes.array,
-//   icons: PropTypes.any.isRequired,
-//   index: PropTypes.number.isRequired,
-//   data: PropTypes.object,
-//   detailPanel: PropTypes.oneOfType([
-//     PropTypes.func,
-//     PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.object, PropTypes.func])),
-//   ]),
-//   options: PropTypes.object.isRequired,
-//   onRowSelected: PropTypes.func,
-//   path: PropTypes.arrayOf(PropTypes.number),
-//   columns: PropTypes.array,
-//   onRowClick: PropTypes.func,
-//   onEditingApproved: PropTypes.func,
-//   onEditingCanceled: PropTypes.func,
-//   localization: PropTypes.object,
-//   getFieldValue: PropTypes.func,
-//   errorState: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-//   onBulkEditRowChanged: PropTypes.func,
-// };

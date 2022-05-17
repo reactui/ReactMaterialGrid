@@ -1,27 +1,11 @@
-/* eslint-disable no-unused-vars */
 import * as React from "react";
-import PropTypes from "prop-types";
-import TableCell from "@material-ui/core/TableCell";
-import TableRow from "@material-ui/core/TableRow";
-import TextField from "@material-ui/core/TextField";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
-import Input from "@material-ui/core/Input";
-import InputLabel from "@material-ui/core/InputLabel";
-import MenuItem from "@material-ui/core/MenuItem";
-import Checkbox from "@material-ui/core/Checkbox";
-import ListItemText from "@material-ui/core/ListItemText";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import Icon from "@material-ui/core/Icon";
-import Tooltip from "@material-ui/core/Tooltip";
+import { TableCell, TableRow, TextField, FormControl, Select, Input, InputLabel } from "@mui/material";
+import { MenuItem, Checkbox, ListItemText, InputAdornment, Tooltip} from "@mui/material";
+import { TimePicker, DatePicker, DateTimePicker } from "@mui/x-date-pickers";
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import DateFnsUtils from "@date-io/date-fns";
 import { useEffect, useState } from "react";
-import {
-  MuiPickersUtilsProvider,
-  TimePicker,
-  DatePicker,
-  DateTimePicker,
-} from "@material-ui/pickers";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -180,19 +164,19 @@ export default function MTableFilterRow(props: ITableFilterRow) {
 
     let dateInputElement: any = null;
     if (columnDef.type === "date") {
-      dateInputElement = <DatePicker {...pickerProps} />;
+      dateInputElement = <DatePicker {...pickerProps} renderInput={(pickerProps) => <TextField {...pickerProps} />}  />;
     } else if (columnDef.type === "datetime") {
-      dateInputElement = <DateTimePicker {...pickerProps} />;
+      dateInputElement = <DateTimePicker {...pickerProps} renderInput={(pickerProps) => <TextField {...pickerProps} />} />;
     } else if (columnDef.type === "time") {
-      dateInputElement = <TimePicker {...pickerProps} />;
+      dateInputElement = <TimePicker {...pickerProps} renderInput={(pickerProps) => <TextField {...pickerProps} />} />;
     }
     return (
-      <MuiPickersUtilsProvider
+      <LocalizationProvider dateAdapter={AdapterDateFns} 
         utils={DateFnsUtils}
         locale={props.localization.dateTimePickerLocalization}
       >
         {dateInputElement}
-      </MuiPickersUtilsProvider>
+      </LocalizationProvider>
     );
   };
 

@@ -1,14 +1,6 @@
-/* eslint-disable no-unused-vars */
-import Checkbox from "@material-ui/core/Checkbox";
-import TableCell from "@material-ui/core/TableCell";
-import TableRow from "@material-ui/core/TableRow";
-import IconButton from "@material-ui/core/IconButton";
-import Icon from "@material-ui/core/Icon";
-import Tooltip from "@material-ui/core/Tooltip";
-import PropTypes, { bool, number } from "prop-types";
+import { Icon, IconButton, Tooltip, TableRow, TableCell, Checkbox}  from "@mui/material";
 import * as React from "react";
 import * as CommonValues from "../utils/common-values";
-/* eslint-enable no-unused-vars */
 
 const MTableBodyRow = props => {
 
@@ -530,34 +522,3 @@ const MTableBodyRow = props => {
 }
 
 export default MTableBodyRow;
-
-MTableBodyRow.defaultProps = {
-  actions: [],
-  index: 0,
-  data: {},
-  options: {},
-  path: [],
-};
-
-MTableBodyRow.propTypes = {
-  actions: PropTypes.array,
-  icons: PropTypes.any.isRequired,
-  index: PropTypes.number.isRequired,
-  data: PropTypes.object.isRequired,
-  detailPanel: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.object, PropTypes.func])),
-  ]),
-  hasAnyEditingRow: PropTypes.bool,
-  options: PropTypes.object.isRequired,
-  onRowSelected: PropTypes.func,
-  path: PropTypes.arrayOf(PropTypes.number),
-  treeDataMaxLevel: PropTypes.number,
-  getFieldValue: PropTypes.func.isRequired,
-  columns: PropTypes.array,
-  onToggleDetailPanel: PropTypes.func.isRequired,
-  onRowClick: PropTypes.func,
-  onEditingApproved: PropTypes.func,
-  onEditingCanceled: PropTypes.func,
-  errorState: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-};

@@ -1,11 +1,6 @@
 /* eslint-disable no-unused-vars */
-import TableCell from "@material-ui/core/TableCell";
-import CircularProgress from "@material-ui/core/CircularProgress";
-import { fade } from "@material-ui/core/styles/colorManipulator";
-import withTheme from "@material-ui/core/styles/withTheme";
+import { TableCell, CircularProgress }  from "@mui/material";
 import { useState } from "react";
-// import { MTable } from "../index-metarial-table";
-
 interface ITableEditCellProps {
   cellEditable: any;
   columnDef: any;
@@ -22,6 +17,7 @@ interface ITableEditCellState {
   isLoading: boolean;
   theValue: any;
 }
+
 function MTableEditCell({
   cellEditable,
   columnDef,
@@ -155,21 +151,6 @@ function MTableEditCell({
   );
 }
 
-// MTableEditCell.defaultProps = {
-//   columnDef: {},
-// };
-
-// MTableEditCell.propTypes = {
-//   cellEditable: PropTypes.object.isRequired,
-//   columnDef: PropTypes.object.isRequired,
-//   components: PropTypes.object.isRequired,
-//   errorState: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-//   icons: PropTypes.object.isRequired,
-//   localization: PropTypes.object.isRequired,
-//   onCellEditFinished: PropTypes.func.isRequired,
-//   rowData: PropTypes.object.isRequired,
-//   size: PropTypes.string,
-// };
-
 // @ts-ignore
-export default withTheme(MTableEditCell);
+//export default withTheme(MTableEditCell);
+export default MTableEditCell;

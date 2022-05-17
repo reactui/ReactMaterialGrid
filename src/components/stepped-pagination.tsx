@@ -1,9 +1,4 @@
-/* eslint-disable no-unused-vars */
-import IconButton from "@material-ui/core/IconButton";
-import withStyles from "@material-ui/core/styles/withStyles";
-import Tooltip from "@material-ui/core/Tooltip";
-import Hidden from "@material-ui/core/Hidden";
-import Button from "@material-ui/core/Button";
+import { IconButton, Tooltip, Hidden, Button} from "@mui/material";
 
 function MTablePaginationInner(props: any) {
   const handleFirstPageButtonClick = (event: any) => {
@@ -139,6 +134,13 @@ function MTablePaginationInner(props: any) {
       </div>
     );
   };
+
+  return (
+    <>
+      {render()}
+    </>
+    
+  )
 }
 
 const actionsStyles = (theme: any) => ({
@@ -161,9 +163,11 @@ const defaultProps = {
   },
 };
 
-const MTableSteppedPagination = withStyles(actionsStyles, { withTheme: true })(
-  // @ts-ignore
-  MTablePaginationInner
-);
+// const MTableSteppedPagination = withStyles(actionsStyles, { withTheme: true })(
+//   // @ts-ignore
+//   MTablePaginationInner
+// );
+
+const MTableSteppedPagination = MTablePaginationInner;
 
 export default MTableSteppedPagination;

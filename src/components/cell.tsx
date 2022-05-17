@@ -1,5 +1,4 @@
-import TableCell from "@material-ui/core/TableCell";
-import PropTypes from "prop-types";
+import { TableCell }  from "@mui/material";
 import parseISO from "date-fns/parseISO";
 import * as CommonValues from "../utils/common-values";
 
@@ -211,11 +210,4 @@ export default MTableCell;
 MTableCell.defaultProps = {
   columnDef: {},
   value: undefined,
-};
-
-MTableCell.propTypes = {
-  columnDef: PropTypes.object.isRequired,
-  value: PropTypes.any,
-  rowData: PropTypes.object,
-  errorState: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 };

@@ -1,45 +1,24 @@
 import './App.css';
-import { Grid, MuiThemeProvider, Button } from "@material-ui/core";
-import { createTheme } from "@material-ui/core/styles";
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import MaterialTable from './material-table'
 import {data, columns} from './data/data'
 import React from 'react';
+
+
 function App() {
 
   let direction = "ltr"; // direction = 'rtl';
-  const theme = createTheme({
-    //direction: Direction.ltr,
-    palette: {
-      type: "light",
-    },
-  });
-
-  const darkTheme = createTheme({
-    //direction: Direction.ltr,
-    palette: {
-      type: "light",
-    },
-  });
+  const theme = createTheme();
   
   return (
     <div style={{ maxWidth: "100%" }}>
     
 
-    <MuiThemeProvider theme={theme}>
-       {Editable()}  
-    </MuiThemeProvider>
-    
-    <br /><br /><br />
-
-    <MuiThemeProvider theme={darkTheme}>
-      {ConditionalActions()} 
-    </MuiThemeProvider>  
-
-    <br /><br /><br />
-
-    <MuiThemeProvider theme={theme}>
+    <ThemeProvider theme={theme}>
+      {Editable()}<br></br><br/><br/>  
+      {ConditionalActions()}<br/><br/>
       {DetailPanelWithRowClick()}
-    </MuiThemeProvider>
+    </ThemeProvider>
 
     </div>
   );

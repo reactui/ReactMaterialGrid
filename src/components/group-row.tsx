@@ -1,10 +1,5 @@
-/* eslint-disable no-unused-vars */
-import TableCell from "@material-ui/core/TableCell";
-import TableRow from "@material-ui/core/TableRow";
-import IconButton from "@material-ui/core/IconButton";
-import PropTypes from "prop-types";
+import {TableCell, TableRow, IconButton} from "@mui/material";
 import * as React from "react";
-/* eslint-enable no-unused-vars */
 
 export default function MTableGroupRow(props: any) {
   const rotateIconStyle = (isOpen: boolean) => ({
@@ -167,35 +162,3 @@ const defaultProps = {
   options: {},
   level: 0,
 };
-
-// MTableGroupRow.propTypes = {
-//   actions: PropTypes.array,
-//   columns: PropTypes.arrayOf(PropTypes.object),
-//   components: PropTypes.object,
-//   detailPanel: PropTypes.oneOfType([
-//     PropTypes.func,
-//     PropTypes.arrayOf(PropTypes.object),
-//   ]),
-//   getFieldValue: PropTypes.func,
-//   groupData: PropTypes.object,
-//   groups: PropTypes.arrayOf(PropTypes.object),
-//   hasAnyEditingRow: PropTypes.bool,
-//   icons: PropTypes.object,
-//   isTreeData: PropTypes.bool.isRequired,
-//   level: PropTypes.number,
-//   localization: PropTypes.object,
-//   onGroupExpandChanged: PropTypes.func,
-//   onRowSelected: PropTypes.func,
-//   onRowClick: PropTypes.func,
-//   onToggleDetailPanel: PropTypes.func.isRequired,
-//   onTreeExpandChanged: PropTypes.func.isRequired,
-//   onEditingCanceled: PropTypes.func,
-//   onEditingApproved: PropTypes.func,
-//   options: PropTypes.object,
-//   path: PropTypes.arrayOf(PropTypes.number),
-//   scrollWidth: PropTypes.number.isRequired,
-//   cellEditable: PropTypes.object,
-//   onCellEditStarted: PropTypes.func,
-//   onCellEditFinished: PropTypes.func,
-//   onBulkEditRowChanged: PropTypes.func,
-// };
