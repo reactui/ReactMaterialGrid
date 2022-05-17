@@ -3,8 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-   
-    
     "@material-ui/icons": "^4.11.3",
     "@material-ui/pickers": "^3.2.2",
     
