@@ -1,4 +1,14 @@
-import { Checkbox, IconButton, InputAdornment, Menu, MenuItem, TextField, Toolbar, Tooltip, Typography } from "@mui/material";
+import {
+  Checkbox,
+  IconButton,
+  InputAdornment,
+  Menu,
+  MenuItem,
+  TextField,
+  Toolbar,
+  Tooltip,
+  Typography,
+} from "@mui/material";
 import { lighten } from "@mui/material/styles";
 import classNames from "classnames";
 import { withStyles } from "@material-ui/core";
@@ -357,12 +367,7 @@ function MTableToolbar(props: any) {
     );
   };
 
-
-  return (
-    <>
-    {render()}
-    </>
-  )
+  return <>{render()}</>;
 }
 
 const defaultProps = {

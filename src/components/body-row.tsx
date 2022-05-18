@@ -1,9 +1,15 @@
-import { Icon, IconButton, Tooltip, TableRow, TableCell, Checkbox}  from "@mui/material";
+import {
+  Icon,
+  IconButton,
+  Tooltip,
+  TableRow,
+  TableCell,
+  Checkbox,
+} from "@mui/material";
 import * as React from "react";
 import * as CommonValues from "../utils/common-values";
 
-const MTableBodyRow = props => {
-
+const MTableBodyRow = (props) => {
   const {
     icons,
     data,
@@ -32,8 +38,8 @@ const MTableBodyRow = props => {
     index,
     path,
     ...rowProps
-  } = props
-  
+  } = props;
+
   const renderColumns = () => {
     const size = CommonValues.elementSize(props);
     const mapArr = columns
@@ -58,12 +64,7 @@ const MTableBodyRow = props => {
               localization={localization}
               columnDef={columnDef}
               size={size}
-              key={
-                "cell-" +
-                data.tableData.id +
-                "-" +
-                columnDef.tableData.id
-              }
+              key={"cell-" + data.tableData.id + "-" + columnDef.tableData.id}
               rowData={data}
               cellEditable={cellEditable}
               onCellEditFinished={onCellEditFinished}
@@ -81,16 +82,9 @@ const MTableBodyRow = props => {
                 ...columnDef,
               }}
               value={value}
-              key={
-                "cell-" +
-                data.tableData.id +
-                "-" +
-                columnDef.tableData.id
-              }
+              key={"cell-" + data.tableData.id + "-" + columnDef.tableData.id}
               rowData={data}
-              cellEditable={
-                columnDef.editable !== "never" && !!cellEditable
-              }
+              cellEditable={columnDef.editable !== "never" && !!cellEditable}
               onCellEditStarted={onCellEditStarted}
               scrollWidth={scrollWidth}
             />
@@ -98,7 +92,7 @@ const MTableBodyRow = props => {
         }
       });
     return mapArr;
-  }
+  };
 
   const renderActions = () => {
     const size = CommonValues.elementSize(props);
@@ -127,7 +121,7 @@ const MTableBodyRow = props => {
         </div>
       </TableCell>
     );
-  }
+  };
 
   const renderSelectionColumn = () => {
     let checkboxProps = options.selectionProps || {};
@@ -163,17 +157,15 @@ const MTableBodyRow = props => {
           checked={data.tableData.checked === true}
           onClick={(e) => e.stopPropagation()}
           value={data.tableData.id.toString()}
-          onChange={(event) =>
-            onRowSelected(event, path, data)
-          }
+          onChange={(event) => onRowSelected(event, path, data)}
           style={styles}
           {...checkboxProps}
         />
       </TableCell>
     );
-  }
+  };
 
-  const rotateIconStyle = isOpen => ({
+  const rotateIconStyle = (isOpen) => ({
     transform: isOpen ? "rotate(90deg)" : "none",
   });
 
@@ -202,15 +194,10 @@ const MTableBodyRow = props => {
             size={size}
             style={{
               transition: "all ease 200ms",
-              ...rotateIconStyle(
-                data.tableData.showDetailPanel
-              ),
+              ...rotateIconStyle(data.tableData.showDetailPanel),
             }}
             onClick={(event) => {
-              onToggleDetailPanel(
-                path,
-                detailPanel
-              );
+              onToggleDetailPanel(path, detailPanel);
               event.stopPropagation();
             }}
           >
@@ -271,10 +258,7 @@ const MTableBodyRow = props => {
                   }}
                   disabled={panel.disabled}
                   onClick={(event) => {
-                    onToggleDetailPanel(
-                      path,
-                      panel.render
-                    );
+                    onToggleDetailPanel(path, panel.render);
                     event.stopPropagation();
                   }}
                 >
@@ -299,14 +283,11 @@ const MTableBodyRow = props => {
         </TableCell>
       );
     }
-  }
+  };
 
   const renderTreeDataColumn = () => {
     const size = CommonValues.elementSize(props);
-    if (
-      data.tableData.childRows &&
-      data.tableData.childRows.length > 0
-    ) {
+    if (data.tableData.childRows && data.tableData.childRows.length > 0) {
       return (
         <TableCell
           size={size}
@@ -333,25 +314,19 @@ const MTableBodyRow = props => {
     } else {
       return <TableCell padding="none" key={"key-tree-data-column"} />;
     }
-  }
+  };
 
   const getStyle = (index, level) => {
     let style = {
       transition: "all ease 300ms",
       cursor: "",
-      opacity: 1
+      opacity: 1,
     };
 
     if (typeof options.rowStyle === "function") {
       style = {
         ...style,
-        ...options.rowStyle(
-          data,
-          index,
-          level,
-          hasAnyEditingRow
-
-        ),
+        ...options.rowStyle(data, index, level, hasAnyEditingRow),
       };
     } else if (options.rowStyle) {
       style = {
@@ -369,9 +344,9 @@ const MTableBodyRow = props => {
     }
 
     return style;
-  }
+  };
 
-  const render =() => {
+  const render = () => {
     const size = CommonValues.elementSize(props);
     const renderColumnsRef = renderColumns();
     if (options.selection) {
@@ -379,9 +354,8 @@ const MTableBodyRow = props => {
     }
     if (
       actions &&
-      actions.filter(
-        (a) => a.position === "row" || typeof a === "function"
-      ).length > 0
+      actions.filter((a) => a.position === "row" || typeof a === "function")
+        .length > 0
     ) {
       if (options.actionsColumnIndex === -1) {
         renderColumnsRef.push(renderActions());
@@ -426,7 +400,6 @@ const MTableBodyRow = props => {
         );
       });
 
-
     return (
       <>
         <TableRow
@@ -451,20 +424,19 @@ const MTableBodyRow = props => {
         >
           {renderColumnsRef}
         </TableRow>
-        {data.tableData &&
-          data.tableData.showDetailPanel && (
-            <TableRow
-            // selected={index % 2 === 0}
+        {data.tableData && data.tableData.showDetailPanel && (
+          <TableRow
+          // selected={index % 2 === 0}
+          >
+            <TableCell
+              size={size}
+              colSpan={renderColumnsRef.length}
+              padding="none"
             >
-              <TableCell
-                size={size}
-                colSpan={renderColumnsRef.length}
-                padding="none"
-              >
-                {data.tableData.showDetailPanel(data)}
-              </TableCell>
-            </TableRow>
-          )}
+              {data.tableData.showDetailPanel(data)}
+            </TableCell>
+          </TableRow>
+        )}
         {data.tableData.childRows &&
           data.tableData.isTreeExpanded &&
           data.tableData.childRows.map((data, index) => {
@@ -512,13 +484,9 @@ const MTableBodyRow = props => {
           })}
       </>
     );
-  }
+  };
 
-  return (
-    <>
-    {render()}
-    </>
-  );
-}
+  return <>{render()}</>;
+};
 
 export default MTableBodyRow;

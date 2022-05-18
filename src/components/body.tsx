@@ -1,4 +1,4 @@
-import { TableBody, TableRow, TableCell }  from "@mui/material";
+import { TableBody, TableRow, TableCell } from "@mui/material";
 import * as React from "react";
 
 interface ITableBodyProps {

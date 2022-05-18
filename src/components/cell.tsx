@@ -1,4 +1,4 @@
-import { TableCell }  from "@mui/material";
+import { TableCell } from "@mui/material";
 import parseISO from "date-fns/parseISO";
 import * as CommonValues from "../utils/common-values";
 

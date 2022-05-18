@@ -1,4 +1,4 @@
-import { Toolbar, Chip, Typography} from "@mui/material"
+import { Toolbar, Chip, Typography } from "@mui/material";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 
 export default function MTableGroupbar(props: any) {

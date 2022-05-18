@@ -1,7 +1,6 @@
-
 import { withStyles } from "@material-ui/core/styles";
 import { IconButton, Tooltip, Typography } from "@mui/material";
-import { merge } from 'lodash'
+import { merge } from "lodash";
 
 function MTablePaginationInner(props: any) {
   const {
@@ -153,6 +152,5 @@ const actionsStyles = (theme: any) => ({
 const MTablePagination = withStyles(actionsStyles, { withTheme: true })(
   MTablePaginationInner
 );
-
 
 export default MTablePagination;

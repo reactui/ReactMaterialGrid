@@ -1,60 +1,66 @@
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { TableHead, TableRow, TableCell, TableSortLabel, Checkbox, Tooltip } from "@mui/material"
+import {
+  TableHead,
+  TableRow,
+  TableCell,
+  TableSortLabel,
+  Checkbox,
+  Tooltip,
+} from "@mui/material";
 import withStyles, { CSSProperties } from "@material-ui/core/styles/withStyles";
 import { Draggable } from "react-beautiful-dnd";
 import * as CommonValues from "../utils/common-values";
 
 interface IHeaderState {
-  lastAdditionalWidth: any
-  lastX: number,
-  resizingColumnDef: any
+  lastAdditionalWidth: any;
+  lastX: number;
+  resizingColumnDef: any;
 }
 interface IHeaderProps {
-  onColumnResized: any
-  onOrderChange: any
-  onAllSelected: any
-  scrollWidth: number
-  headerStyle: CSSProperties | undefined
-  options: any
-  columns: []
-  draggable: boolean
-  sorting: boolean
-  icons: any
-  orderBy: string
-  orderDirection: 'asc' | 'desc'
-  thirdSortClick : boolean
-  classes: any
-  theme: any
-  localization: any
-  treeDataMaxLevel: number
-  selectedCount: number
-  dataCount: number
-  showSelectAllCheckbox: boolean
-  hasSelection: boolean
-  showActionsColumn: boolean
-  actionsHeaderIndex: number
-  hasDetailPanel: boolean
-  detailPanelColumnAlignment: any
-  isTreeData: boolean
+  onColumnResized: any;
+  onOrderChange: any;
+  onAllSelected: any;
+  scrollWidth: number;
+  headerStyle: CSSProperties | undefined;
+  options: any;
+  columns: [];
+  draggable: boolean;
+  sorting: boolean;
+  icons: any;
+  orderBy: string;
+  orderDirection: "asc" | "desc";
+  thirdSortClick: boolean;
+  classes: any;
+  theme: any;
+  localization: any;
+  treeDataMaxLevel: number;
+  selectedCount: number;
+  dataCount: number;
+  showSelectAllCheckbox: boolean;
+  hasSelection: boolean;
+  showActionsColumn: boolean;
+  actionsHeaderIndex: number;
+  hasDetailPanel: boolean;
+  detailPanelColumnAlignment: any;
+  isTreeData: boolean;
 }
 
-const MTableHeader = (props : IHeaderProps) :JSX.Element => {
-  
-    const [state, setState] = useState<IHeaderState>( {
-      lastAdditionalWidth: undefined,
-      lastX: 0,
-      resizingColumnDef: undefined,
-    });
+const MTableHeader = (props: IHeaderProps): JSX.Element => {
+  const [state, setState] = useState<IHeaderState>({
+    lastAdditionalWidth: undefined,
+    lastX: 0,
+    resizingColumnDef: undefined,
+  });
 
-    useEffect(() => {
-      document.addEventListener("mousemove", handleMouseMove);
-      document.addEventListener("mouseup", handleMouseUp);
-      return () => {
-        document.removeEventListener("mousemove", handleMouseMove);
-        document.removeEventListener("mouseup", handleMouseUp);
-      }
-    }, []);  
+  useEffect(() => {
+    document.addEventListener("mousemove", handleMouseMove);
+    document.addEventListener("mouseup", handleMouseUp);
+    return () => {
+      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseup", handleMouseUp);
+    };
+  }, []);
 
   const handleMouseDown = (e, columnDef) => {
     setState({
@@ -70,10 +76,16 @@ const MTableHeader = (props : IHeaderProps) :JSX.Element => {
     }
 
     let additionalWidth = state.lastAdditionalWidth + e.clientX - state.lastX;
-    additionalWidth = Math.min(state.resizingColumnDef.maxWidth || additionalWidth, additionalWidth);
+    additionalWidth = Math.min(
+      state.resizingColumnDef.maxWidth || additionalWidth,
+      additionalWidth
+    );
 
     if (state.resizingColumnDef.tableData.additionalWidth !== additionalWidth) {
-      props.onColumnResized(state.resizingColumnDef.tableData.id, additionalWidth);
+      props.onColumnResized(
+        state.resizingColumnDef.tableData.id,
+        additionalWidth
+      );
     }
   };
 
@@ -96,9 +108,11 @@ const MTableHeader = (props : IHeaderProps) :JSX.Element => {
       minWidth: columnDef.minWidth,
     };
 
-    if (props.options.tableLayout === "fixed" &&
-        props.options.columnResizable &&
-        columnDef.resizable !== false) {
+    if (
+      props.options.tableLayout === "fixed" &&
+      props.options.columnResizable &&
+      columnDef.resizable !== false
+    ) {
       style.paddingRight = 2;
     }
 
@@ -113,8 +127,10 @@ const MTableHeader = (props : IHeaderProps) :JSX.Element => {
         (columnDef: any) =>
           !columnDef.hidden && !(columnDef.tableData.groupOrder > -1)
       )
-      .sort((a:any, b:any) => a.tableData.columnOrder - b.tableData.columnOrder)
-      .map((columnDef:any, index) => {
+      .sort(
+        (a: any, b: any) => a.tableData.columnOrder - b.tableData.columnOrder
+      )
+      .map((columnDef: any, index) => {
         let content = columnDef.title;
 
         if (props.draggable) {
@@ -149,17 +165,12 @@ const MTableHeader = (props : IHeaderProps) :JSX.Element => {
                     ? "asc"
                     : props.orderDirection === "asc"
                     ? "desc"
-                    : props.orderDirection === "desc" &&
-                      props.thirdSortClick
+                    : props.orderDirection === "desc" && props.thirdSortClick
                     ? ""
-                    : props.orderDirection === "desc" &&
-                      !props.thirdSortClick
+                    : props.orderDirection === "desc" && !props.thirdSortClick
                     ? "asc"
-                    : 'asc';
-                props.onOrderChange(
-                  columnDef.tableData.id,
-                  orderDirection
-                );
+                    : "asc";
+                props.onOrderChange(columnDef.tableData.id, orderDirection);
               }}
             >
               {content}
@@ -219,7 +230,7 @@ const MTableHeader = (props : IHeaderProps) :JSX.Element => {
         );
       });
     return mapArr;
-  }
+  };
 
   const renderActionsHeader = () => {
     const localization = {
@@ -244,8 +255,8 @@ const MTableHeader = (props : IHeaderProps) :JSX.Element => {
         </TableSortLabel>
       </TableCell>
     );
-  }
-  
+  };
+
   const renderSelectionHeader = () => {
     const selectionWidth = CommonValues.selectionMaxWidth(
       props,
@@ -262,12 +273,10 @@ const MTableHeader = (props : IHeaderProps) :JSX.Element => {
         {props.showSelectAllCheckbox && (
           <Checkbox
             indeterminate={
-              props.selectedCount > 0 &&
-              props.selectedCount < props.dataCount
+              props.selectedCount > 0 && props.selectedCount < props.dataCount
             }
             checked={
-              props.dataCount > 0 &&
-              props.selectedCount === props.dataCount
+              props.dataCount > 0 && props.selectedCount === props.dataCount
             }
             onChange={(event, checked) =>
               props.onAllSelected && props.onAllSelected(checked)
@@ -277,7 +286,7 @@ const MTableHeader = (props : IHeaderProps) :JSX.Element => {
         )}
       </TableCell>
     );
-  }
+  };
 
   const renderDetailPanelColumnCell = () => {
     return (
@@ -288,7 +297,7 @@ const MTableHeader = (props : IHeaderProps) :JSX.Element => {
         style={{ ...props.headerStyle }}
       />
     );
-  }
+  };
 
   const render = () => {
     const headers = renderHeader();
@@ -335,8 +344,8 @@ const MTableHeader = (props : IHeaderProps) :JSX.Element => {
     }
 
     props.columns
-      .filter((columnDef:any) => columnDef.tableData.groupOrder > -1)
-      .forEach((columnDef:any) => {
+      .filter((columnDef: any) => columnDef.tableData.groupOrder > -1)
+      .forEach((columnDef: any) => {
         headers.splice(
           0,
           0,
@@ -353,14 +362,10 @@ const MTableHeader = (props : IHeaderProps) :JSX.Element => {
         <TableRow>{headers}</TableRow>
       </TableHead>
     );
-  }
+  };
 
-  return (
-    <>
-    {render()}
-    </>
-  )
-}
+  return <>{render()}</>;
+};
 
 MTableHeader.defaultProps = {
   dataCount: 0,

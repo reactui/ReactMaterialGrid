@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { TableCell, CircularProgress }  from "@mui/material";
+import { TableCell, CircularProgress } from "@mui/material";
 import { useState } from "react";
 interface ITableEditCellProps {
   cellEditable: any;

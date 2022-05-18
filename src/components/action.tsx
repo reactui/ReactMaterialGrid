@@ -1,9 +1,7 @@
-import { Icon, IconButton, Tooltip}  from "@mui/material";
+import { Icon, IconButton, Tooltip } from "@mui/material";
 
-const MTableAction = ({action, data, disabled, size}) => {
-
-  const render = () => {  
-
+const MTableAction = ({ action, data, disabled, size }) => {
+  const render = () => {
     if (typeof action === "function") {
       action = action(data);
       if (!action) {
@@ -52,7 +50,6 @@ const MTableAction = ({action, data, disabled, size}) => {
     );
 
     if (action.tooltip) {
-      
       return disabled ? (
         <Tooltip title={action.tooltip}>
           <span>{button}</span>
@@ -63,13 +60,9 @@ const MTableAction = ({action, data, disabled, size}) => {
     } else {
       return button;
     }
-  }
+  };
 
-  return (
-    <>
-    {render()}
-    </>
-  );
-}
+  return <>{render()}</>;
+};
 
 export default MTableAction;

@@ -1,9 +1,23 @@
 import * as React from "react";
-import { TableCell, TableRow, TextField, FormControl, Select, Input, InputLabel } from "@mui/material";
-import { MenuItem, Checkbox, ListItemText, InputAdornment, Tooltip} from "@mui/material";
+import {
+  TableCell,
+  TableRow,
+  TextField,
+  FormControl,
+  Select,
+  Input,
+  InputLabel,
+} from "@mui/material";
+import {
+  MenuItem,
+  Checkbox,
+  ListItemText,
+  InputAdornment,
+  Tooltip,
+} from "@mui/material";
 import { TimePicker, DatePicker, DateTimePicker } from "@mui/x-date-pickers";
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from "@mui/lab/LocalizationProvider";
+import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import DateFnsUtils from "@date-io/date-fns";
 import { useEffect, useState } from "react";
 
@@ -35,6 +49,8 @@ interface ITableFilterRow {
 }
 
 export default function MTableFilterRow(props: ITableFilterRow) {
+  console.log(props);
+
   const getLocalizationData = () => ({
     ...defaultProps.localization,
     ...props.localization,
@@ -56,6 +72,10 @@ export default function MTableFilterRow(props: ITableFilterRow) {
     useEffect(() => {
       setSelectedFilter(columnDef.tableData.filterValue || []);
     }, [columnDef.tableData.filterValue]);
+
+    //useEffect(() => {
+    // setSelectedFilter(columnDef.tableData.filterValue || []);
+    //});
 
     return (
       <FormControl style={{ width: "100%" }}>
@@ -164,14 +184,30 @@ export default function MTableFilterRow(props: ITableFilterRow) {
 
     let dateInputElement: any = null;
     if (columnDef.type === "date") {
-      dateInputElement = <DatePicker {...pickerProps} renderInput={(pickerProps) => <TextField {...pickerProps} />}  />;
+      dateInputElement = (
+        <DatePicker
+          {...pickerProps}
+          renderInput={(pickerProps) => <TextField {...pickerProps} />}
+        />
+      );
     } else if (columnDef.type === "datetime") {
-      dateInputElement = <DateTimePicker {...pickerProps} renderInput={(pickerProps) => <TextField {...pickerProps} />} />;
+      dateInputElement = (
+        <DateTimePicker
+          {...pickerProps}
+          renderInput={(pickerProps) => <TextField {...pickerProps} />}
+        />
+      );
     } else if (columnDef.type === "time") {
-      dateInputElement = <TimePicker {...pickerProps} renderInput={(pickerProps) => <TextField {...pickerProps} />} />;
+      dateInputElement = (
+        <TimePicker
+          {...pickerProps}
+          renderInput={(pickerProps) => <TextField {...pickerProps} />}
+        />
+      );
     }
     return (
-      <LocalizationProvider dateAdapter={AdapterDateFns} 
+      <LocalizationProvider
+        dateAdapter={AdapterDateFns}
         utils={DateFnsUtils}
         locale={props.localization.dateTimePickerLocalization}
       >
@@ -284,6 +320,8 @@ export default function MTableFilterRow(props: ITableFilterRow) {
       </TableRow>
     );
   };
+
+  return <>{render()}</>;
 }
 
 const defaultProps = {

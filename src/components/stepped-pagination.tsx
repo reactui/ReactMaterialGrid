@@ -1,4 +1,4 @@
-import { IconButton, Tooltip, Hidden, Button} from "@mui/material";
+import { IconButton, Tooltip, Hidden, Button } from "@mui/material";
 
 function MTablePaginationInner(props: any) {
   const handleFirstPageButtonClick = (event: any) => {
@@ -135,12 +135,7 @@ function MTablePaginationInner(props: any) {
     );
   };
 
-  return (
-    <>
-      {render()}
-    </>
-    
-  )
+  return <>{render()}</>;
 }
 
 const actionsStyles = (theme: any) => ({

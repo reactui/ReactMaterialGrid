@@ -1,719 +1,917 @@
-import './App.css';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import MaterialTable from './material-table'
-import {data, columns} from './data/data'
-import React, { useState } from 'react';
-import { MTableToolbar } from './components';
-import { Button, Chip } from '@mui/material';
-
+import "./App.css";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import MaterialTable from "./material-table";
+import { data, columns } from "./data/data";
+import React, { useState } from "react";
+import { MTableToolbar } from "./components";
+import { Button, Chip } from "@mui/material";
 
 function App() {
-
   let direction = "ltr"; // direction = 'rtl';
   //const theme = createTheme();
 
   const theme = createTheme({
     palette: {
       primary: {
-        main: '#4caf50',
+        main: "#4caf50",
       },
       secondary: {
-        main: '#ff9100',
+        main: "#ff9100",
       },
     },
-
   });
 
   const materialTableRef = React.createRef();
-  const [state, setState] = useState({initialFormData: {}});
-  
+  const [state, setState] = useState({ initialFormData: {} });
+
   return (
     <div style={{ maxWidth: "100%" }}>
-
-   
-
-    <ThemeProvider theme={theme}>
-
-
-    French localization  
-
-{FrenchTable()}
-
-
-    Styling with MUI
-
-    <ThemeProvider theme={theme}>
-      <MaterialTable
-        title="Styling with MuiThemeProvider Preview"
-        columns={[
-          {
-            title: 'Name', field: 'name',
-          },
-          { title: 'Surname', field: 'surname' },
-          { title: 'Birth Year', field: 'birthYear', type: 'numeric' },
-          {
-            title: 'Birth Place',
-            field: 'birthCity',
-            lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
-          },
-        ]}
-        data={[
-          { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-          { name: 'Zerya Betül', surname: 'Baran', birthYear: 2017, birthCity: 34 },
-        ]}
-        options={{
-          selection: true
-        }}
-      />
-    </ThemeProvider>
-
-    Selected Row Styling
-
-    {SelectedRowStyling()}
-
-    Row Styling 
-
-    <MaterialTable
-      title="Row Styling Preview"
-      columns={[
-        { title: 'Name', field: 'name' },
-        { title: 'Surname', field: 'surname' },
-        { title: 'Birth Year', field: 'birthYear', type: 'numeric' },
-        {
-          title: 'Birth Place',
-          field: 'birthCity',
-          lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
-        },
-      ]}
-      data={[
-        { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-        { name: 'Zerya Betül', surname: 'Baran', birthYear: 2017, birthCity: 34 },
-      ]}
-      options={{
-        rowStyle: {
-          backgroundColor: '#EEE',
-        }
-      }}
-    />
-
-      Header Styling Cells
-
-      <MaterialTable
-      title="Cell Header Styling Preview"
-      columns={[
-        {
-          title: 'Name', field: 'name',
-          cellStyle: {
-            backgroundColor: '#039be5',
-            color: '#FFF'
-          },
-          headerStyle: {
-            backgroundColor: '#039be5',
+      <ThemeProvider theme={theme}>
+        Non-filtering field 
+        {NonFilteringField()}
+        Basic Filtering
+        {BasicFiltering()}
+        Tree Grid
+        {BasicTreeData()}
+        French localization
+        {FrenchTable()}
+        <MaterialTable
+          title="Styling with MuiThemeProvider Preview"
+          columns={[
+            {
+              title: "Name",
+              field: "name",
+            },
+            { title: "Surname", field: "surname" },
+            { title: "Birth Year", field: "birthYear", type: "numeric" },
+            {
+              title: "Birth Place",
+              field: "birthCity",
+              lookup: { 34: "İstanbul", 63: "Şanlıurfa" },
+            },
+          ]}
+          data={[
+            {
+              name: "Mehmet",
+              surname: "Baran",
+              birthYear: 1987,
+              birthCity: 63,
+            },
+            {
+              name: "Zerya Betül",
+              surname: "Baran",
+              birthYear: 2017,
+              birthCity: 34,
+            },
+          ]}
+          options={{
+            selection: true,
+          }}
+        />
+        Selected Row Styling
+        {SelectedRowStyling()}
+        Row Styling
+        <MaterialTable
+          title="Row Styling Preview"
+          columns={[
+            { title: "Name", field: "name" },
+            { title: "Surname", field: "surname" },
+            { title: "Birth Year", field: "birthYear", type: "numeric" },
+            {
+              title: "Birth Place",
+              field: "birthCity",
+              lookup: { 34: "İstanbul", 63: "Şanlıurfa" },
+            },
+          ]}
+          data={[
+            {
+              name: "Mehmet",
+              surname: "Baran",
+              birthYear: 1987,
+              birthCity: 63,
+            },
+            {
+              name: "Zerya Betül",
+              surname: "Baran",
+              birthYear: 2017,
+              birthCity: 34,
+            },
+          ]}
+          options={{
+            rowStyle: {
+              backgroundColor: "#EEE",
+            },
+          }}
+        />
+        Header Styling Cells
+        <MaterialTable
+          title="Cell Header Styling Preview"
+          columns={[
+            {
+              title: "Name",
+              field: "name",
+              cellStyle: {
+                backgroundColor: "#039be5",
+                color: "#FFF",
+              },
+              headerStyle: {
+                backgroundColor: "#039be5",
+              },
+            },
+            { title: "Surname", field: "surname" },
+            { title: "Birth Year", field: "birthYear", type: "numeric" },
+            {
+              title: "Birth Place",
+              field: "birthCity",
+              lookup: { 34: "İstanbul", 63: "Şanlıurfa" },
+            },
+          ]}
+          data={[
+            {
+              name: "Mehmet",
+              surname: "Baran",
+              birthYear: 1987,
+              birthCity: 63,
+            },
+            {
+              name: "Zerya Betül",
+              surname: "Baran",
+              birthYear: 2017,
+              birthCity: 34,
+            },
+          ]}
+          options={{
+            headerStyle: {
+              backgroundColor: "#01579b",
+              color: "#FFF",
+            },
+          }}
+        />
+        Optional Selection Props
+        <MaterialTable
+          title="Conditional Selection Boxes Preview"
+          columns={[
+            { title: "Name", field: "name" },
+            { title: "Surname", field: "surname" },
+            { title: "Birth Year", field: "birthYear", type: "numeric" },
+            {
+              title: "Birth Place",
+              field: "birthCity",
+              lookup: { 34: "İstanbul", 63: "Şanlıurfa" },
+            },
+          ]}
+          data={[
+            {
+              name: "Mehmet",
+              surname: "Baran",
+              birthYear: 1987,
+              birthCity: 63,
+            },
+            {
+              name: "Zerya Betül",
+              surname: "Baran",
+              birthYear: 2017,
+              birthCity: 34,
+            },
+          ]}
+          options={{
+            selection: true,
+            selectionProps: (rowData) => ({
+              disabled: rowData.name === "Mehmet",
+              color: "primary",
+            }),
+          }}
+        />
+        Handling Selection Change Events
+        <MaterialTable
+          title="Handling Selection Changes Preview"
+          columns={[
+            { title: "Name", field: "name" },
+            { title: "Surname", field: "surname" },
+            { title: "Birth Year", field: "birthYear", type: "numeric" },
+            {
+              title: "Birth Place",
+              field: "birthCity",
+              lookup: { 34: "İstanbul", 63: "Şanlıurfa" },
+            },
+          ]}
+          data={[
+            {
+              name: "Mehmet",
+              surname: "Baran",
+              birthYear: 1987,
+              birthCity: 63,
+            },
+            {
+              name: "Zerya Betül",
+              surname: "Baran",
+              birthYear: 2017,
+              birthCity: 34,
+            },
+          ]}
+          options={{
+            selection: true,
+          }}
+          onSelectionChange={(rows) =>
+            alert("You selected " + rows.length + " rows")
           }
-        },
-        { title: 'Surname', field: 'surname' },
-        { title: 'Birth Year', field: 'birthYear', type: 'numeric' },
-        {
-          title: 'Birth Place',
-          field: 'birthCity',
-          lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
-        },
-      ]}
-      data={[
-        { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-        { name: 'Zerya Betül', surname: 'Baran', birthYear: 2017, birthCity: 34 },
-      ]}
-      options={{
-        headerStyle: {
-          backgroundColor: '#01579b',
-          color: '#FFF'
-        }
-      }}
-    />
-
-      Optional Selection Props
-
-      <MaterialTable
-      title="Conditional Selection Boxes Preview"
-      columns={[
-        { title: 'Name', field: 'name' },
-        { title: 'Surname', field: 'surname' },
-        { title: 'Birth Year', field: 'birthYear', type: 'numeric' },
-        {
-          title: 'Birth Place',
-          field: 'birthCity',
-          lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
-        },
-      ]}
-      data={[
-        { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-        { name: 'Zerya Betül', surname: 'Baran', birthYear: 2017, birthCity: 34 },
-      ]}        
-      options={{
-        selection: true,
-        selectionProps: rowData => ({
-          disabled: rowData.name === 'Mehmet',
-          color: 'primary'
-        })
-      }}
-    />
-
-      Handling Selection Change Events 
-
-      <MaterialTable
-        title="Handling Selection Changes Preview"
-        columns={[
-          { title: 'Name', field: 'name' },
-          { title: 'Surname', field: 'surname' },
-          { title: 'Birth Year', field: 'birthYear', type: 'numeric' },
-          {
-            title: 'Birth Place',
-            field: 'birthCity',
-            lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
-          },
-        ]}
-        data={[
-          { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-          { name: 'Zerya Betül', surname: 'Baran', birthYear: 2017, birthCity: 34 },
-        ]}
-        options={{
-          selection: true
-        }}
-        onSelectionChange={(rows) => alert('You selected ' + rows.length + ' rows')}
-      />
-
-      Selection
-
-      <MaterialTable
-      title="Basic Selection Preview"
-      columns={[
-        { title: 'Name', field: 'name' },
-        { title: 'Surname', field: 'surname' },
-        { title: 'Birth Year', field: 'birthYear', type: 'numeric' },
-        {
-          title: 'Birth Place',
-          field: 'birthCity',
-          lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
-        },
-      ]}
-      data={[
-        { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-        { name: 'Zerya Betül', surname: 'Baran', birthYear: 2017, birthCity: 34 },
-      ]}        
-      options={{
-        selection: true
-      }}
-    />
-
-      Remote Data
-
-      <MaterialTable
-      title="Remote Data Preview"
-      columns={[
-        {
-          title: 'Avatar',
-          field: 'avatar',
-          render: rowData => (
-            <img
-              style={{ height: 36, borderRadius: '50%' }}
-              src={rowData.avatar}
-            />
-          ),
-        },
-        { title: 'Id', field: 'id' },
-        { title: 'First Name', field: 'first_name' },
-        { title: 'Last Name', field: 'last_name' },
-      ]}
-      data={query =>
-        new Promise((resolve, reject) => {
-          let url = 'https://reqres.in/api/users?'
-          url += 'per_page=' + query.pageSize
-          url += '&page=' + (query.page + 1)
-          fetch(url)
-            .then(response => response.json())
-            .then(result => {
-              resolve({
-                data: result.data,
-                page: result.page - 1,
-                totalCount: result.total,
-              })
+        />
+        Selection
+        <MaterialTable
+          title="Basic Selection Preview"
+          columns={[
+            { title: "Name", field: "name" },
+            { title: "Surname", field: "surname" },
+            { title: "Birth Year", field: "birthYear", type: "numeric" },
+            {
+              title: "Birth Place",
+              field: "birthCity",
+              lookup: { 34: "İstanbul", 63: "Şanlıurfa" },
+            },
+          ]}
+          data={[
+            {
+              name: "Mehmet",
+              surname: "Baran",
+              birthYear: 1987,
+              birthCity: 63,
+            },
+            {
+              name: "Zerya Betül",
+              surname: "Baran",
+              birthYear: 2017,
+              birthCity: 34,
+            },
+          ]}
+          options={{
+            selection: true,
+          }}
+        />
+        Remote Data
+        <MaterialTable
+          title="Remote Data Preview"
+          columns={[
+            {
+              title: "Avatar",
+              field: "avatar",
+              render: (rowData) => (
+                <img
+                  style={{ height: 36, borderRadius: "50%" }}
+                  src={rowData.avatar}
+                />
+              ),
+            },
+            { title: "Id", field: "id" },
+            { title: "First Name", field: "first_name" },
+            { title: "Last Name", field: "last_name" },
+          ]}
+          data={(query) =>
+            new Promise((resolve, reject) => {
+              let url = "https://reqres.in/api/users?";
+              url += "per_page=" + query.pageSize;
+              url += "&page=" + (query.page + 1);
+              fetch(url)
+                .then((response) => response.json())
+                .then((result) => {
+                  resolve({
+                    data: result.data,
+                    page: result.page - 1,
+                    totalCount: result.total,
+                  });
+                });
             })
-        })
-      }
-    />
-
-      Grouping
-
-      <MaterialTable
-      title="Basic Grouping Preview"
-      columns={[
-        { title: 'Name', field: 'name' },
-        { title: 'Surname', field: 'surname' },
-        { title: 'Birth Year', field: 'birthYear', type: 'numeric' },
-        {
-          title: 'Birth Place',
-          field: 'birthCity',
-          lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
-        },
-      ]}
-      data={[
-        { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-        { name: 'Zerya Betül', surname: 'Baran', birthYear: 2017, birthCity: 34 },
-      ]}        
-      options={{
-        grouping: true
-      }}
-    />
-
-      Frozen
-
-      <MaterialTable
-        title="Basic Fixed Columns Preview"
-        columns={[
-          { title: 'Name', field: 'name', width: 150 },
-          { title: 'Surname', field: 'surname', width: 150 },
-          { title: 'Birth Year', field: 'birthYear', type: 'numeric', width: 150 },
-          {
-            title: 'Birth Place',
-            field: 'birthCity',
-            lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
-            width: 150
-          },
-          { title: 'Name', field: 'name', width: 150 },
-          { title: 'Surname', field: 'surname', width: 150 },
-          { title: 'Birth Year', field: 'birthYear', type: 'numeric', width: 150 },
-          {
-            title: 'Birth Place',
-            field: 'birthCity',
-            lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
-            width: 150
-          },
-        ]}
-        data={[
-          { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-          { name: 'Zerya Betül', surname: 'Baran', birthYear: 2017, birthCity: 34 },
-        ]}        
-        options={{
-          fixedColumns: {
-            left: 2,
-            right: 1
           }
-        }}
-      />
-    )
-
-      Toggle Panel On Rowc Click
-
-      <MaterialTable
-      columns={[
-        { title: 'Name', field: 'name' },
-        { title: 'Surname', field: 'surname' },
-        { title: 'Birth Year', field: 'birthYear', type: 'numeric' },
-        {
-          title: 'Birth Place',
-          field: 'birthCity',
-          lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
-        },
-      ]}
-      data={[
-        { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-        { name: 'Zerya Betül', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-      ]}
-      title="Detail Panel With RowClick Preview"
-      detailPanel={rowData => {
-        return (
-          <iframe
-            width="100%"
-            height="315"
-            src="https://www.youtube.com/embed/C0DPdy98e4c"
-            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-          />
-        )
-      }}
-      onRowClick={(event, rowData, togglePanel) => togglePanel()}
-    />
-
-    Frozen Cliumns
-
-    <MaterialTable
-        title="Basic Fixed Columns Preview"
-        columns={[
-          { title: 'Name', field: 'name', width: 150 },
-          { title: 'Surname', field: 'surname', width: 150 },
-          { title: 'Birth Year', field: 'birthYear', type: 'numeric', width: 150 },
-          {
-            title: 'Birth Place',
-            field: 'birthCity',
-            lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
-            width: 150
-          },
-          { title: 'Name', field: 'name', width: 150 },
-          { title: 'Surname', field: 'surname', width: 150 },
-          { title: 'Birth Year', field: 'birthYear', type: 'numeric', width: 150 },
-          {
-            title: 'Birth Place',
-            field: 'birthCity',
-            lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
-            width: 150
-          },
-        ]}
-        data={[
-          { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-          { name: 'Zerya Betül', surname: 'Baran', birthYear: 2017, birthCity: 34 },
-        ]}        
-        options={{
-          fixedColumns: {
-            left: 2,
-            right: 1
-          }
-        }}
-      />
-    )
-
-      Multiple Detail Panels
-
-      <MaterialTable
-      title="Multiple Detail Panels Preview"
-      columns={[
-        { title: 'Name', field: 'name' },
-        { title: 'Surname', field: 'surname' },
-        { title: 'Birth Year', field: 'birthYear', type: 'numeric' },
-        {
-          title: 'Birth Place',
-          field: 'birthCity',
-          lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
-        },
-      ]}
-      data={[
-        { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-        { name: 'Zerya Betül', surname: 'Baran', birthYear: 2017, birthCity: 34 },
-      ]}
-      detailPanel={[
-        {
-          tooltip: 'Show Name',
-          render: rowData => {
+        />
+        Grouping
+        <MaterialTable
+          title="Basic Grouping Preview"
+          columns={[
+            { title: "Name", field: "name" },
+            { title: "Surname", field: "surname" },
+            { title: "Birth Year", field: "birthYear", type: "numeric" },
+            {
+              title: "Birth Place",
+              field: "birthCity",
+              lookup: { 34: "İstanbul", 63: "Şanlıurfa" },
+            },
+          ]}
+          data={[
+            {
+              name: "Mehmet",
+              surname: "Baran",
+              birthYear: 1987,
+              birthCity: 63,
+            },
+            {
+              name: "Zerya Betül",
+              surname: "Baran",
+              birthYear: 2017,
+              birthCity: 34,
+            },
+          ]}
+          options={{
+            grouping: true,
+          }}
+        />
+        Frozen
+        <MaterialTable
+          title="Basic Fixed Columns Preview"
+          columns={[
+            { title: "Name", field: "name", width: 150 },
+            { title: "Surname", field: "surname", width: 150 },
+            {
+              title: "Birth Year",
+              field: "birthYear",
+              type: "numeric",
+              width: 150,
+            },
+            {
+              title: "Birth Place",
+              field: "birthCity",
+              lookup: { 34: "İstanbul", 63: "Şanlıurfa" },
+              width: 150,
+            },
+            { title: "Name", field: "name", width: 150 },
+            { title: "Surname", field: "surname", width: 150 },
+            {
+              title: "Birth Year",
+              field: "birthYear",
+              type: "numeric",
+              width: 150,
+            },
+            {
+              title: "Birth Place",
+              field: "birthCity",
+              lookup: { 34: "İstanbul", 63: "Şanlıurfa" },
+              width: 150,
+            },
+          ]}
+          data={[
+            {
+              name: "Mehmet",
+              surname: "Baran",
+              birthYear: 1987,
+              birthCity: 63,
+            },
+            {
+              name: "Zerya Betül",
+              surname: "Baran",
+              birthYear: 2017,
+              birthCity: 34,
+            },
+          ]}
+          options={{
+            fixedColumns: {
+              left: 2,
+              right: 1,
+            },
+          }}
+        />
+        ) Toggle Panel On Rowc Click
+        <MaterialTable
+          columns={[
+            { title: "Name", field: "name" },
+            { title: "Surname", field: "surname" },
+            { title: "Birth Year", field: "birthYear", type: "numeric" },
+            {
+              title: "Birth Place",
+              field: "birthCity",
+              lookup: { 34: "İstanbul", 63: "Şanlıurfa" },
+            },
+          ]}
+          data={[
+            {
+              name: "Mehmet",
+              surname: "Baran",
+              birthYear: 1987,
+              birthCity: 63,
+            },
+            {
+              name: "Zerya Betül",
+              surname: "Baran",
+              birthYear: 1987,
+              birthCity: 63,
+            },
+          ]}
+          title="Detail Panel With RowClick Preview"
+          detailPanel={(rowData) => {
             return (
-              <div
-                style={{
-                  fontSize: 100,
-                  textAlign: 'center',
-                  color: 'white',
-                  backgroundColor: '#43A047',
-                }}
-              >
-                {rowData.name}
-              </div>
-            )
-          },
-        },
-        {
-          icon: 'account_circle',
-          tooltip: 'Show Surname',
-          render: rowData => {
+              <iframe
+                width="100%"
+                height="315"
+                src="https://www.youtube.com/embed/C0DPdy98e4c"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+              />
+            );
+          }}
+          onRowClick={(event, rowData, togglePanel) => togglePanel()}
+        />
+        Frozen Cliumns
+        <MaterialTable
+          title="Basic Fixed Columns Preview"
+          columns={[
+            { title: "Name", field: "name", width: 150 },
+            { title: "Surname", field: "surname", width: 150 },
+            {
+              title: "Birth Year",
+              field: "birthYear",
+              type: "numeric",
+              width: 150,
+            },
+            {
+              title: "Birth Place",
+              field: "birthCity",
+              lookup: { 34: "İstanbul", 63: "Şanlıurfa" },
+              width: 150,
+            },
+            { title: "Name", field: "name", width: 150 },
+            { title: "Surname", field: "surname", width: 150 },
+            {
+              title: "Birth Year",
+              field: "birthYear",
+              type: "numeric",
+              width: 150,
+            },
+            {
+              title: "Birth Place",
+              field: "birthCity",
+              lookup: { 34: "İstanbul", 63: "Şanlıurfa" },
+              width: 150,
+            },
+          ]}
+          data={[
+            {
+              name: "Mehmet",
+              surname: "Baran",
+              birthYear: 1987,
+              birthCity: 63,
+            },
+            {
+              name: "Zerya Betül",
+              surname: "Baran",
+              birthYear: 2017,
+              birthCity: 34,
+            },
+          ]}
+          options={{
+            fixedColumns: {
+              left: 2,
+              right: 1,
+            },
+          }}
+        />
+        ) Multiple Detail Panels
+        <MaterialTable
+          title="Multiple Detail Panels Preview"
+          columns={[
+            { title: "Name", field: "name" },
+            { title: "Surname", field: "surname" },
+            { title: "Birth Year", field: "birthYear", type: "numeric" },
+            {
+              title: "Birth Place",
+              field: "birthCity",
+              lookup: { 34: "İstanbul", 63: "Şanlıurfa" },
+            },
+          ]}
+          data={[
+            {
+              name: "Mehmet",
+              surname: "Baran",
+              birthYear: 1987,
+              birthCity: 63,
+            },
+            {
+              name: "Zerya Betül",
+              surname: "Baran",
+              birthYear: 2017,
+              birthCity: 34,
+            },
+          ]}
+          detailPanel={[
+            {
+              tooltip: "Show Name",
+              render: (rowData) => {
+                return (
+                  <div
+                    style={{
+                      fontSize: 100,
+                      textAlign: "center",
+                      color: "white",
+                      backgroundColor: "#43A047",
+                    }}
+                  >
+                    {rowData.name}
+                  </div>
+                );
+              },
+            },
+            {
+              icon: "account_circle",
+              tooltip: "Show Surname",
+              render: (rowData) => {
+                return (
+                  <div
+                    style={{
+                      fontSize: 100,
+                      textAlign: "center",
+                      color: "white",
+                      backgroundColor: "#E53935",
+                    }}
+                  >
+                    {rowData.surname}
+                  </div>
+                );
+              },
+            },
+            {
+              icon: "favorite_border",
+              openIcon: "favorite",
+              tooltip: "Show Both",
+              render: (rowData) => {
+                return (
+                  <div
+                    style={{
+                      fontSize: 100,
+                      textAlign: "center",
+                      color: "white",
+                      backgroundColor: "#FDD835",
+                    }}
+                  >
+                    {rowData.name} {rowData.surname}
+                  </div>
+                );
+              },
+            },
+          ]}
+        />
+        Detail Panel
+        <MaterialTable
+          title="One Detail Panel Preview"
+          columns={[
+            { title: "Name", field: "name" },
+            { title: "Surname", field: "surname" },
+            { title: "Birth Year", field: "birthYear", type: "numeric" },
+            {
+              title: "Birth Place",
+              field: "birthCity",
+              lookup: { 34: "İstanbul", 63: "Şanlıurfa" },
+            },
+          ]}
+          data={[
+            {
+              name: "Mehmet",
+              surname: "Baran",
+              birthYear: 1987,
+              birthCity: 63,
+            },
+            {
+              name: "Zerya Betül",
+              surname: "Baran",
+              birthYear: 2017,
+              birthCity: 34,
+            },
+          ]}
+          detailPanel={(rowData) => {
             return (
-              <div
-                style={{
-                  fontSize: 100,
-                  textAlign: 'center',
-                  color: 'white',
-                  backgroundColor: '#E53935',
-                }}
+              <iframe
+                width="100%"
+                height="315"
+                src="https://www.youtube.com/embed/C0DPdy98e4c"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+              />
+            );
+          }}
+        />
+        ) Action Overriding
+        <MaterialTable
+          title="Action Overriding Preview"
+          columns={[
+            { title: "Name", field: "name" },
+            { title: "Surname", field: "surname" },
+            { title: "Birth Year", field: "birthYear", type: "numeric" },
+            {
+              title: "Birth Place",
+              field: "birthCity",
+              lookup: { 34: "İstanbul", 63: "Şanlıurfa" },
+            },
+          ]}
+          data={[
+            {
+              name: "Mehmet",
+              surname: "Baran",
+              birthYear: 1987,
+              birthCity: 63,
+            },
+            {
+              name: "Zerya Betül",
+              surname: "Baran",
+              birthYear: 2017,
+              birthCity: 34,
+            },
+          ]}
+          actions={[
+            {
+              icon: "save",
+              tooltip: "Save User",
+              onClick: (event, rowData) => alert("You saved " + rowData.name),
+            },
+          ]}
+          components={{
+            Action: (props) => (
+              <Button
+                onClick={(event) => props.action.onClick(event, props.data)}
+                color="primary"
+                variant="contained"
+                style={{ textTransform: "none" }}
+                size="small"
               >
-                {rowData.surname}
+                My Button
+              </Button>
+            ),
+          }}
+        />
+        Component Overriding
+        <MaterialTable
+          title="Toolbar Overriding Preview"
+          columns={[
+            { title: "Name", field: "name" },
+            { title: "Surname", field: "surname" },
+            { title: "Birth Year", field: "birthYear", type: "numeric" },
+            {
+              title: "Birth Place",
+              field: "birthCity",
+              lookup: { 34: "İstanbul", 63: "Şanlıurfa" },
+            },
+          ]}
+          data={[
+            {
+              name: "Mehmet",
+              surname: "Baran",
+              birthYear: 1987,
+              birthCity: 63,
+            },
+            {
+              name: "Zerya Betül",
+              surname: "Baran",
+              birthYear: 2017,
+              birthCity: 34,
+            },
+          ]}
+          components={{
+            Toolbar: (props) => (
+              <div>
+                <MTableToolbar {...props} />
+                <div style={{ padding: "0px 10px" }}>
+                  <Chip
+                    label="Chip 1"
+                    color="secondary"
+                    style={{ marginRight: 5 }}
+                  />
+                  <Chip
+                    label="Chip 2"
+                    color="secondary"
+                    style={{ marginRight: 5 }}
+                  />
+                  <Chip
+                    label="Chip 3"
+                    color="secondary"
+                    style={{ marginRight: 5 }}
+                  />
+                  <Chip
+                    label="Chip 4"
+                    color="secondary"
+                    style={{ marginRight: 5 }}
+                  />
+                  <Chip
+                    label="Chip 5"
+                    color="secondary"
+                    style={{ marginRight: 5 }}
+                  />
+                </div>
               </div>
-            )
-          },
-        },
-        {
-          icon: 'favorite_border',
-          openIcon: 'favorite',
-          tooltip: 'Show Both',
-          render: rowData => {
-            return (
-              <div
-                style={{
-                  fontSize: 100,
-                  textAlign: 'center',
-                  color: 'white',
-                  backgroundColor: '#FDD835',
-                }}
-              >
-                {rowData.name} {rowData.surname}
-              </div>
-            )
-          },
-        },
-      ]}
-    />
-
-      Detail Panel
-
-      <MaterialTable
-      title="One Detail Panel Preview"
-      columns={[
-        { title: 'Name', field: 'name' },
-        { title: 'Surname', field: 'surname' },
-        { title: 'Birth Year', field: 'birthYear', type: 'numeric' },
-        {
-          title: 'Birth Place',
-          field: 'birthCity',
-          lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
-        },
-      ]}
-      data={[
-        { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-        { name: 'Zerya Betül', surname: 'Baran', birthYear: 2017, birthCity: 34 },
-      ]}
-      detailPanel={rowData => {
-        return (
-          <iframe
-            width="100%"
-            height="315"
-            src="https://www.youtube.com/embed/C0DPdy98e4c"
-           
-            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-            
-          />
-        )
-      }}
-    />
-  )
-
-      Action Overriding
-
-      <MaterialTable
-      title="Action Overriding Preview"
-      columns={[
-        { title: 'Name', field: 'name' },
-        { title: 'Surname', field: 'surname' },
-        { title: 'Birth Year', field: 'birthYear', type: 'numeric' },
-        {
-          title: 'Birth Place',
-          field: 'birthCity',
-          lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
-        },
-      ]}
-      data={[
-        { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-        { name: 'Zerya Betül', surname: 'Baran', birthYear: 2017, birthCity: 34 },
-      ]}
-      actions={[
-        {
-          icon: 'save',
-          tooltip: 'Save User',
-          onClick: (event, rowData) => alert("You saved " + rowData.name)
-        }
-      ]}
-      components={{
-        Action: props => (
-          <Button
-            onClick={(event) => props.action.onClick(event, props.data)}
-            color="primary"
-            variant="contained"
-            style={{textTransform: 'none'}}
-            size="small"
-          >
-            My Button
-          </Button>
-        ),
-      }}
-    />
-
-      Component Overriding
-
-      <MaterialTable
-      title="Toolbar Overriding Preview"
-      columns={[
-        { title: 'Name', field: 'name' },
-        { title: 'Surname', field: 'surname' },
-        { title: 'Birth Year', field: 'birthYear', type: 'numeric' },
-        {
-          title: 'Birth Place',
-          field: 'birthCity',
-          lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
-        },
-      ]}
-      data={[
-        { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-        { name: 'Zerya Betül', surname: 'Baran', birthYear: 2017, birthCity: 34 },
-      ]}        
-      components={{
-        Toolbar: props => (
-          <div>
-            <MTableToolbar {...props} />
-            <div style={{padding: '0px 10px'}}>
-              <Chip label="Chip 1" color="secondary" style={{marginRight: 5}}/>
-              <Chip label="Chip 2" color="secondary" style={{marginRight: 5}}/>
-              <Chip label="Chip 3" color="secondary" style={{marginRight: 5}}/>
-              <Chip label="Chip 4" color="secondary" style={{marginRight: 5}}/>
-              <Chip label="Chip 5" color="secondary" style={{marginRight: 5}}/>
-            </div>
-          </div>
-        ),
-      }}
-    />
-
-      Editable
-
-      {Editable()}
-
-      <br/><br/><br/>
-
-      Custom Column Renderig:
-
-      <MaterialTable
-      title="Render Image Preview"
-      columns={[
-        { title: 'Avatar', 
-          field: 'imageUrl', 
-          render: rowData => <img src={rowData.imageUrl} style={{width: 40, borderRadius: '50%'}}/> 
-        },
-        { title: 'Name', field: 'name' },
-        { title: 'Surname', field: 'surname' },
-        { title: 'Birth Year', field: 'birthYear', type: 'numeric' },
-        {
-          title: 'Birth Place',
-          field: 'birthCity',
-          lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
-        },
-      ]}
-      data={[
-        { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63, imageUrl: 'https://avatars0.githubusercontent.com/u/7895451?s=460&v=4' },
-        { name: 'Zerya Betül', surname: 'Baran', birthYear: 2017, birthCity: 34, imageUrl: 'https://avatars0.githubusercontent.com/u/7895451?s=460&v=4' },
-      ]}        
-    />
-
-    <MaterialTable
-      title="Free Action Preview"
-      columns={[
-        { title: 'Name', field: 'name' },
-        { title: 'Surname', field: 'surname' },
-        { title: 'Birth Year', field: 'birthYear', type: 'numeric' },
-        {
-          title: 'Birth Place',
-          field: 'birthCity',
-          lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
-        },
-      ]}
-      data={[
-        { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-        { name: 'Zerya Betül', surname: 'Baran', birthYear: 2017, birthCity: 34 },
-      ]}        
-      actions={[
-        {
-          icon: 'add',
-          tooltip: 'Add User',
-          isFreeAction: true,
-          onClick: (event) => alert("You want to add a new row")
-        }
-      ]}
-    />
-
-    <br/><br/><br/>
-
-    <MaterialTable
-      title="Positioning Actions Column Preview"
-      columns={[
-        { title: 'Name', field: 'name' },
-        { title: 'Surname', field: 'surname' },
-        { title: 'Birth Year', field: 'birthYear', type: 'numeric' },
-        {
-          title: 'Birth Place',
-          field: 'birthCity',
-          lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
-        },
-      ]}
-      data={[
-        { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-        { name: 'Zerya Betül', surname: 'Baran', birthYear: 2017, birthCity: 34 },
-      ]}
-      actions={[
-        {
-          icon: 'save',
-          tooltip: 'Save User',
-          onClick: (event, rowData) => alert("You saved " + rowData.name)
-        },
-        rowData => ({
-          icon: 'delete',
-          tooltip: 'Delete User',
-          onClick: (event, rowData) => alert("You want to delete " + rowData.name),
-          disabled: rowData.birthYear < 2000
-        })
-      ]}
-      options={{
-        actionsColumnIndex: -1
-      }}
-    />  
-
-      <br/><br/><br/>
-
-
-    <MaterialTable
-      title="Conditional Actions Preview"
-      columns={[
-        { title: 'Name', field: 'name' },
-        { title: 'Surname', field: 'surname' },
-        { title: 'Birth Year', field: 'birthYear', type: 'numeric' },
-        {
-          title: 'Birth Place',
-          field: 'birthCity',
-          lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
-        },
-      ]}
-      data={[
-        { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-        { name: 'Zerya Betül', surname: 'Baran', birthYear: 2017, birthCity: 34 },
-      ]}
-      actions={[
-        {
-          icon: 'save',
-          tooltip: 'Save User',
-          onClick: (event, rowData) => alert("You saved " + rowData.name)
-        },
-        rowData => ({
-          icon: 'delete',
-          tooltip: 'Delete User',
-          onClick: (event, rowData) => alert("You want to delete " + rowData.name),
-          disabled: rowData.birthYear < 2000
-        })
-      ]}
-    />
-
-      <br/><br/><br/>
-
-    <MaterialTable
-      title="Multiple Actions Preview"
-      columns={[
-        { title: 'Name', field: 'name' },
-        { title: 'Surname', field: 'surname' },
-        { title: 'Birth Year', field: 'birthYear', type: 'numeric' },
-        {
-          title: 'Birth Place',
-          field: 'birthCity',
-          lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
-        },
-      ]}
-      data={[
-        { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-        { name: 'Zerya Betül', surname: 'Baran', birthYear: 2017, birthCity: 34 },
-      ]}        
-      actions={[
-        {
-          icon: 'save',
-          tooltip: 'Save User',
-          onClick: (event, rowData) => alert("You saved " + rowData.name)
-        },
-        {
-          icon: 'delete',
-          tooltip: 'Delete User',
-          onClick: (event, rowData) => alert("You want to delete " + rowData.name)
-        }
-      ]}
-    />
-
-    <br/><br/><br/>
-
-    {/* <MaterialTable
+            ),
+          }}
+        />
+        Editable
+        {Editable()}
+        <br />
+        <br />
+        <br />
+        Custom Column Renderig:
+        <MaterialTable
+          title="Render Image Preview"
+          columns={[
+            {
+              title: "Avatar",
+              field: "imageUrl",
+              render: (rowData) => (
+                <img
+                  src={rowData.imageUrl}
+                  style={{ width: 40, borderRadius: "50%" }}
+                />
+              ),
+            },
+            { title: "Name", field: "name" },
+            { title: "Surname", field: "surname" },
+            { title: "Birth Year", field: "birthYear", type: "numeric" },
+            {
+              title: "Birth Place",
+              field: "birthCity",
+              lookup: { 34: "İstanbul", 63: "Şanlıurfa" },
+            },
+          ]}
+          data={[
+            {
+              name: "Mehmet",
+              surname: "Baran",
+              birthYear: 1987,
+              birthCity: 63,
+              imageUrl:
+                "https://avatars0.githubusercontent.com/u/7895451?s=460&v=4",
+            },
+            {
+              name: "Zerya Betül",
+              surname: "Baran",
+              birthYear: 2017,
+              birthCity: 34,
+              imageUrl:
+                "https://avatars0.githubusercontent.com/u/7895451?s=460&v=4",
+            },
+          ]}
+        />
+        <MaterialTable
+          title="Free Action Preview"
+          columns={[
+            { title: "Name", field: "name" },
+            { title: "Surname", field: "surname" },
+            { title: "Birth Year", field: "birthYear", type: "numeric" },
+            {
+              title: "Birth Place",
+              field: "birthCity",
+              lookup: { 34: "İstanbul", 63: "Şanlıurfa" },
+            },
+          ]}
+          data={[
+            {
+              name: "Mehmet",
+              surname: "Baran",
+              birthYear: 1987,
+              birthCity: 63,
+            },
+            {
+              name: "Zerya Betül",
+              surname: "Baran",
+              birthYear: 2017,
+              birthCity: 34,
+            },
+          ]}
+          actions={[
+            {
+              icon: "add",
+              tooltip: "Add User",
+              isFreeAction: true,
+              onClick: (event) => alert("You want to add a new row"),
+            },
+          ]}
+        />
+        <br />
+        <br />
+        <br />
+        <MaterialTable
+          title="Positioning Actions Column Preview"
+          columns={[
+            { title: "Name", field: "name" },
+            { title: "Surname", field: "surname" },
+            { title: "Birth Year", field: "birthYear", type: "numeric" },
+            {
+              title: "Birth Place",
+              field: "birthCity",
+              lookup: { 34: "İstanbul", 63: "Şanlıurfa" },
+            },
+          ]}
+          data={[
+            {
+              name: "Mehmet",
+              surname: "Baran",
+              birthYear: 1987,
+              birthCity: 63,
+            },
+            {
+              name: "Zerya Betül",
+              surname: "Baran",
+              birthYear: 2017,
+              birthCity: 34,
+            },
+          ]}
+          actions={[
+            {
+              icon: "save",
+              tooltip: "Save User",
+              onClick: (event, rowData) => alert("You saved " + rowData.name),
+            },
+            (rowData) => ({
+              icon: "delete",
+              tooltip: "Delete User",
+              onClick: (event, rowData) =>
+                alert("You want to delete " + rowData.name),
+              disabled: rowData.birthYear < 2000,
+            }),
+          ]}
+          options={{
+            actionsColumnIndex: -1,
+          }}
+        />
+        <br />
+        <br />
+        <br />
+        <MaterialTable
+          title="Conditional Actions Preview"
+          columns={[
+            { title: "Name", field: "name" },
+            { title: "Surname", field: "surname" },
+            { title: "Birth Year", field: "birthYear", type: "numeric" },
+            {
+              title: "Birth Place",
+              field: "birthCity",
+              lookup: { 34: "İstanbul", 63: "Şanlıurfa" },
+            },
+          ]}
+          data={[
+            {
+              name: "Mehmet",
+              surname: "Baran",
+              birthYear: 1987,
+              birthCity: 63,
+            },
+            {
+              name: "Zerya Betül",
+              surname: "Baran",
+              birthYear: 2017,
+              birthCity: 34,
+            },
+          ]}
+          actions={[
+            {
+              icon: "save",
+              tooltip: "Save User",
+              onClick: (event, rowData) => alert("You saved " + rowData.name),
+            },
+            (rowData) => ({
+              icon: "delete",
+              tooltip: "Delete User",
+              onClick: (event, rowData) =>
+                alert("You want to delete " + rowData.name),
+              disabled: rowData.birthYear < 2000,
+            }),
+          ]}
+        />
+        <br />
+        <br />
+        <br />
+        <MaterialTable
+          title="Multiple Actions Preview"
+          columns={[
+            { title: "Name", field: "name" },
+            { title: "Surname", field: "surname" },
+            { title: "Birth Year", field: "birthYear", type: "numeric" },
+            {
+              title: "Birth Place",
+              field: "birthCity",
+              lookup: { 34: "İstanbul", 63: "Şanlıurfa" },
+            },
+          ]}
+          data={[
+            {
+              name: "Mehmet",
+              surname: "Baran",
+              birthYear: 1987,
+              birthCity: 63,
+            },
+            {
+              name: "Zerya Betül",
+              surname: "Baran",
+              birthYear: 2017,
+              birthCity: 34,
+            },
+          ]}
+          actions={[
+            {
+              icon: "save",
+              tooltip: "Save User",
+              onClick: (event, rowData) => alert("You saved " + rowData.name),
+            },
+            {
+              icon: "delete",
+              tooltip: "Delete User",
+              onClick: (event, rowData) =>
+                alert("You want to delete " + rowData.name),
+            },
+          ]}
+        />
+        <br />
+        <br />
+        <br />
+        {/* <MaterialTable
         title="Duplicate Action Preview"
         columns={[
           { title: 'Name', field: 'name' },
@@ -755,48 +953,56 @@ function App() {
           }
         ]}
       />   */}
-
-      <br/><br/><br/>
-
-
-    <MaterialTable
-      title="Simple Action Preview"
-      columns={[
-        { title: 'Name', field: 'name' },
-        { title: 'Surname', field: 'surname' },
-        { title: 'Birth Year', field: 'birthYear', type: 'numeric' },
-        {
-          title: 'Birth Place',
-          field: 'birthCity',
-          lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
-        },
-      ]}
-      data={[
-        { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-        { name: 'Zerya Betül', surname: 'Baran', birthYear: 2017, birthCity: 34 },
-      ]}        
-      actions={[
-        {
-          icon: 'save',
-          tooltip: 'Save User',
-          onClick: (event:any, rowData) => { 
-            alert("You saved " + rowData.name)
-          }
-        },
-        {
-          icon: 'edit',
-          tooltip: 'Edit User',
-          onClick: (event:any, rowData) => { 
-            alert("You Edited " + rowData.name)
-          }
-        }
-      ]}
-    />
-      {/* {Editable()}<br></br><br/><br/>  
+        <br />
+        <br />
+        <br />
+        <MaterialTable
+          title="Simple Action Preview"
+          columns={[
+            { title: "Name", field: "name" },
+            { title: "Surname", field: "surname" },
+            { title: "Birth Year", field: "birthYear", type: "numeric" },
+            {
+              title: "Birth Place",
+              field: "birthCity",
+              lookup: { 34: "İstanbul", 63: "Şanlıurfa" },
+            },
+          ]}
+          data={[
+            {
+              name: "Mehmet",
+              surname: "Baran",
+              birthYear: 1987,
+              birthCity: 63,
+            },
+            {
+              name: "Zerya Betül",
+              surname: "Baran",
+              birthYear: 2017,
+              birthCity: 34,
+            },
+          ]}
+          actions={[
+            {
+              icon: "save",
+              tooltip: "Save User",
+              onClick: (event: any, rowData) => {
+                alert("You saved " + rowData.name);
+              },
+            },
+            {
+              icon: "edit",
+              tooltip: "Edit User",
+              onClick: (event: any, rowData) => {
+                alert("You Edited " + rowData.name);
+              },
+            },
+          ]}
+        />
+        {/* {Editable()}<br></br><br/><br/>  
       {ConditionalActions()}<br/><br/>
       {DetailPanelWithRowClick()} */}
-    </ThemeProvider>
-
+      </ThemeProvider>
     </div>
   );
 }
@@ -817,61 +1023,73 @@ function DetailPanelWithRowClick() {
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
             // allowfullscreen
           />
-        )
+        );
       }}
-      onRowClick={(event:any, rowDat:any, togglePanel:any) => togglePanel()}
+      onRowClick={(event: any, rowDat: any, togglePanel: any) => togglePanel()}
     />
-  )
+  );
 }
 
 function SelectedRowStyling() {
   const { useState } = React;
   const [selectedRow, setSelectedRow] = useState(null);
-  
+
   return (
     <MaterialTable
       title="Selected Row Styling Preview"
       columns={[
-        { title: 'Name', field: 'name' },
-        { title: 'Surname', field: 'surname' },
-        { title: 'Birth Year', field: 'birthYear', type: 'numeric' },
+        { title: "Name", field: "name" },
+        { title: "Surname", field: "surname" },
+        { title: "Birth Year", field: "birthYear", type: "numeric" },
         {
-          title: 'Birth Place',
-          field: 'birthCity',
-          lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
+          title: "Birth Place",
+          field: "birthCity",
+          lookup: { 34: "İstanbul", 63: "Şanlıurfa" },
         },
       ]}
       data={[
-        { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-        { name: 'Zerya Betül', surname: 'Baran', birthYear: 2017, birthCity: 34 },
+        { name: "Mehmet", surname: "Baran", birthYear: 1987, birthCity: 63 },
+        {
+          name: "Zerya Betül",
+          surname: "Baran",
+          birthYear: 2017,
+          birthCity: 34,
+        },
       ]}
-      onRowClick={((evt, selectedRow) => setSelectedRow(selectedRow.tableData.id))}
+      onRowClick={(evt, selectedRow) =>
+        setSelectedRow(selectedRow.tableData.id)
+      }
       options={{
-        rowStyle: rowData => ({
-          backgroundColor: (selectedRow === rowData.tableData.id) ? '#EEE' : '#FFF'
-        })
+        rowStyle: (rowData) => ({
+          backgroundColor:
+            selectedRow === rowData.tableData.id ? "#EEE" : "#FFF",
+        }),
       }}
     />
-  )
+  );
 }
 
 function Editable() {
   //const { useState } = React;
 
   const [columns, setColumns] = useState([
-    { title: 'Name', field: 'name' },
-    { title: 'Surname', field: 'surname', initialEditValue: 'initial edit value' },
-    { title: 'Birth Year', field: 'birthYear', type: 'numeric' },
+    { title: "Name", field: "name" },
     {
-      title: 'Birth Place',
-      field: 'birthCity',
-      lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
+      title: "Surname",
+      field: "surname",
+      initialEditValue: "initial edit value",
+    },
+    { title: "Birth Year", field: "birthYear", type: "numeric" },
+    {
+      title: "Birth Place",
+      field: "birthCity",
+      lookup: { 34: "İstanbul", 63: "Şanlıurfa" },
     },
   ]);
 
   const [data, setData] = useState([
-    { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-    { name: 'Zerya Betül', surname: 'Baran', birthYear: 2017, birthCity: 34 },
+    { name: "Mehmet", surname: "Baran", birthYear: 1987, birthCity: 63 },
+    { name: "Zerya Betül", surname: "Baran", birthYear: 2017, birthCity: 34 },
   ]);
 
   return (
@@ -880,13 +1098,13 @@ function Editable() {
       columns={columns}
       data={data}
       editable={{
-        onRowAdd: newData =>
+        onRowAdd: (newData) =>
           new Promise((resolve, reject) => {
             setTimeout(() => {
               setData([...data, newData]);
-              
+
               resolve(newData);
-            }, 1000)
+            }, 1000);
           }),
         onRowUpdate: (newData, oldData) =>
           new Promise((resolve, reject) => {
@@ -897,22 +1115,22 @@ function Editable() {
               setData([...dataUpdate]);
 
               resolve(newData);
-            }, 1000)
+            }, 1000);
           }),
-        onRowDelete: oldData =>
+        onRowDelete: (oldData) =>
           new Promise((resolve, reject) => {
             setTimeout(() => {
               const dataDelete = [...data];
               const index = oldData.tableData.id;
               dataDelete.splice(index, 1);
               setData([...dataDelete]);
-              
-              resolve(dataDelete)
-            }, 1000)
+
+              resolve(dataDelete);
+            }, 1000);
           }),
       }}
     />
-  )
+  );
 }
 
 function ConditionalActions() {
@@ -920,116 +1138,267 @@ function ConditionalActions() {
     <MaterialTable
       title="Conditional Actions Preview"
       columns={[
-        { title: 'Name', field: 'name' },
-        { title: 'Surname', field: 'surname' },
-        { title: 'Birth Year', field: 'birthYear', type: 'numeric' },
+        { title: "Name", field: "name" },
+        { title: "Surname", field: "surname" },
+        { title: "Birth Year", field: "birthYear", type: "numeric" },
         {
-          title: 'Birth Place',
-          field: 'birthCity',
-          lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
+          title: "Birth Place",
+          field: "birthCity",
+          lookup: { 34: "İstanbul", 63: "Şanlıurfa" },
         },
       ]}
       data={[
-        { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-        { name: 'Zerya Betül', surname: 'Baran', birthYear: 2017, birthCity: 34 },
+        { name: "Mehmet", surname: "Baran", birthYear: 1987, birthCity: 63 },
+        {
+          name: "Zerya Betül",
+          surname: "Baran",
+          birthYear: 2017,
+          birthCity: 34,
+        },
       ]}
       actions={[
         {
-          icon: 'save',
-          tooltip: 'Save User',
-          onClick: (event: any, rowData: any) => alert("You saved " + rowData.name)
+          icon: "save",
+          tooltip: "Save User",
+          onClick: (event: any, rowData: any) =>
+            alert("You saved " + rowData.name),
         },
-        (rowData:any) => ({
-          icon: 'delete',
-          tooltip: 'Delete User',
-          onClick: (event: any, rowData: any) => alert("You want to delete " + rowData.name),
-          disabled: rowData.birthYear < 2000
-        })
+        (rowData: any) => ({
+          icon: "delete",
+          tooltip: "Delete User",
+          onClick: (event: any, rowData: any) =>
+            alert("You want to delete " + rowData.name),
+          disabled: rowData.birthYear < 2000,
+        }),
       ]}
     />
-  )
+  );
 }
 
 function FrenchTable() {
   return (
-      <MaterialTable
-          title="Visualisation du tableau en Français"
-          columns={[
-              { title: 'Prénom', field: 'name' },
-              { title: 'Nom', field: 'surname' },
-              {
-                  title: 'Date de naissance',
-                  field: 'birthYear',
-                  type: 'numeric'
-              },
-              {
-                  title: 'Ville de naissance',
-                  field: 'birthCity',
-                  lookup: { 34: 'Istanbul', 63: 'Sanliurfa' }
-              }
-          ]}
-          data={[
-              {
-                  name: 'Mehmet',
-                  surname: 'Baran',
-                  birthYear: 1987,
-                  birthCity: 63
-              },
-              {
-                  name: 'Zerya Betül',
-                  surname: 'Baran',
-                  birthYear: 2017,
-                  birthCity: 34
-              }
-          ]}
-          localization={{
-              body: {
-                  emptyDataSourceMessage: "Pas d'enregistreent à afficher",
-                  addTooltip: 'Ajouter',
-                  deleteTooltip: 'Supprimer',
-                  editTooltip: 'Editer',
-                  filterRow: {
-                      filterTooltip: 'Filtrer'
-                  },
-                  editRow: {
-                      deleteText: 'Voulez-vous supprimer cette ligne?',
-                      cancelTooltip: 'Annuler',
-                      saveTooltip: 'Enregistrer'
-                  }
-              },
-              grouping: {
-                  placeholder: "Tirer l'entête ...",
-                  groupedBy: 'Grouper par:'
-              },
-              header: {
-                  actions: 'Actions'
-              },
-              pagination: {
-                  labelDisplayedRows: '{from}-{to} de {count}',
-                  labelRowsSelect: 'lignes',
-                  labelRowsPerPage: 'lignes par page:',
-                  firstAriaLabel: 'Première page',
-                  firstTooltip: 'Première page',
-                  previousAriaLabel: 'Page précédente',
-                  previousTooltip: 'Page précédente',
-                  nextAriaLabel: 'Page suivante',
-                  nextTooltip: 'Page suivante',
-                  lastAriaLabel: 'Dernière page',
-                  lastTooltip: 'Dernière page'
-              },
-              toolbar: {
-                  addRemoveColumns: 'Ajouter ou supprimer des colonnes',
-                  nRowsSelected: '{0} ligne(s) sélectionée(s)',
-                  showColumnsTitle: 'Voir les colonnes',
-                  showColumnsAriaLabel: 'Voir les colonnes',
-                  exportTitle: 'Exporter',
-                  exportAriaLabel: 'Exporter',
-                  exportName: 'Exporter en CSV',
-                  searchTooltip: 'Chercher',
-                  searchPlaceholder: 'Chercher'
-              }
-          }}
-      />
+    <MaterialTable
+      title="Visualisation du tableau en Français"
+      columns={[
+        { title: "Prénom", field: "name" },
+        { title: "Nom", field: "surname" },
+        {
+          title: "Date de naissance",
+          field: "birthYear",
+          type: "numeric",
+        },
+        {
+          title: "Ville de naissance",
+          field: "birthCity",
+          lookup: { 34: "Istanbul", 63: "Sanliurfa" },
+        },
+      ]}
+      data={[
+        {
+          name: "Mehmet",
+          surname: "Baran",
+          birthYear: 1987,
+          birthCity: 63,
+        },
+        {
+          name: "Zerya Betül",
+          surname: "Baran",
+          birthYear: 2017,
+          birthCity: 34,
+        },
+      ]}
+      localization={{
+        body: {
+          emptyDataSourceMessage: "Pas d'enregistreent à afficher",
+          addTooltip: "Ajouter",
+          deleteTooltip: "Supprimer",
+          editTooltip: "Editer",
+          filterRow: {
+            filterTooltip: "Filtrer",
+          },
+          editRow: {
+            deleteText: "Voulez-vous supprimer cette ligne?",
+            cancelTooltip: "Annuler",
+            saveTooltip: "Enregistrer",
+          },
+        },
+        grouping: {
+          placeholder: "Tirer l'entête ...",
+          groupedBy: "Grouper par:",
+        },
+        header: {
+          actions: "Actions",
+        },
+        pagination: {
+          labelDisplayedRows: "{from}-{to} de {count}",
+          labelRowsSelect: "lignes",
+          labelRowsPerPage: "lignes par page:",
+          firstAriaLabel: "Première page",
+          firstTooltip: "Première page",
+          previousAriaLabel: "Page précédente",
+          previousTooltip: "Page précédente",
+          nextAriaLabel: "Page suivante",
+          nextTooltip: "Page suivante",
+          lastAriaLabel: "Dernière page",
+          lastTooltip: "Dernière page",
+        },
+        toolbar: {
+          addRemoveColumns: "Ajouter ou supprimer des colonnes",
+          nRowsSelected: "{0} ligne(s) sélectionée(s)",
+          showColumnsTitle: "Voir les colonnes",
+          showColumnsAriaLabel: "Voir les colonnes",
+          exportTitle: "Exporter",
+          exportAriaLabel: "Exporter",
+          exportName: "Exporter en CSV",
+          searchTooltip: "Chercher",
+          searchPlaceholder: "Chercher",
+        },
+      }}
+    />
+  );
+}
+
+function BasicTreeData() {
+  return (
+    <MaterialTable
+      title="Basic Tree Data Preview"
+      data={[
+        {
+          id: 1,
+          name: "a",
+          surname: "Baran",
+          birthYear: 1987,
+          birthCity: 63,
+          sex: "Male",
+          type: "adult",
+        },
+        {
+          id: 2,
+          name: "b",
+          surname: "Baran",
+          birthYear: 1987,
+          birthCity: 34,
+          sex: "Female",
+          type: "adult",
+          parentId: 1,
+        },
+        {
+          id: 3,
+          name: "c",
+          surname: "Baran",
+          birthYear: 1987,
+          birthCity: 34,
+          sex: "Female",
+          type: "child",
+          parentId: 1,
+        },
+        {
+          id: 4,
+          name: "d",
+          surname: "Baran",
+          birthYear: 1987,
+          birthCity: 34,
+          sex: "Female",
+          type: "child",
+          parentId: 3,
+        },
+        {
+          id: 5,
+          name: "e",
+          surname: "Baran",
+          birthYear: 1987,
+          birthCity: 34,
+          sex: "Female",
+          type: "child",
+        },
+        {
+          id: 6,
+          name: "f",
+          surname: "Baran",
+          birthYear: 1987,
+          birthCity: 34,
+          sex: "Female",
+          type: "child",
+          parentId: 5,
+        },
+      ]}
+      columns={[
+        { title: "Adı", field: "name" },
+        { title: "Soyadı", field: "surname" },
+        { title: "Cinsiyet", field: "sex" },
+        { title: "Tipi", field: "type", removable: false },
+        { title: "Doğum Yılı", field: "birthYear", type: "numeric" },
+        {
+          title: "Doğum Yeri",
+          field: "birthCity",
+          lookup: { 34: "İstanbul", 63: "Şanlıurfa" },
+        },
+      ]}
+      parentChildData={(row, rows) => rows.find((a) => a.id === row.parentId)}
+      options={{
+        selection: true,
+      }}
+    />
+  );
+}
+
+function BasicFiltering() {
+  return (
+    <MaterialTable
+      title="Basic Filtering Preview"
+      columns={[
+        { title: "Name", field: "name" },
+        { title: "Surname", field: "surname" },
+        { title: "Birth Year", field: "birthYear", type: "numeric" },
+        {
+          title: "Birth Place",
+          field: "birthCity",
+          lookup: { 34: "İstanbul", 63: "Şanlıurfa" },
+        },
+      ]}
+      data={[
+        { name: "Mehmet", surname: "Baran", birthYear: 1987, birthCity: 63 },
+        {
+          name: "Zerya Betül",
+          surname: "Baran",
+          birthYear: 2017,
+          birthCity: 34,
+        },
+      ]}
+      options={{
+        filtering: true,
+      }}
+    />
+  );
+}
+
+function NonFilteringField() {
+  return (
+    <MaterialTable
+      title="Non Filtering Field Preview"
+      columns={[
+        { title: "Name", field: "name", filtering: false },
+        { title: "Surname", field: "surname" },
+        { title: "Birth Year", field: "birthYear", type: "numeric" },
+        {
+          title: "Birth Place",
+          field: "birthCity",
+          lookup: { 34: "İstanbul", 63: "Şanlıurfa" },
+        },
+      ]}
+      data={[
+        { name: "Mehmet", surname: "Baran", birthYear: 1987, birthCity: 63 },
+        {
+          name: "Zerya Betül",
+          surname: "Baran",
+          birthYear: 2017,
+          birthCity: 34,
+        },
+      ]}
+      options={{
+        filtering: true,
+      }}
+    />
   );
 }
 

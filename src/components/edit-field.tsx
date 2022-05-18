@@ -1,8 +1,17 @@
-import { TextField, Checkbox, Select, MenuItem, FormControl, FormHelperText, FormGroup, FormControlLabel } from "@mui/material";
+import {
+  TextField,
+  Checkbox,
+  Select,
+  MenuItem,
+  FormControl,
+  FormHelperText,
+  FormGroup,
+  FormControlLabel,
+} from "@mui/material";
 import { TimePicker, DatePicker, DateTimePicker } from "@mui/x-date-pickers";
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import DateFnsUtils from "@date-io/date-fns";
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import AdapterDateFns from "@mui/lab/AdapterDateFns";
 
 interface ITableEditField {
   columnDef: any;
@@ -85,9 +94,13 @@ export default function MTableEditField(props: ITableEditField) {
         ? props.columnDef.dateSetting.format
         : "dd.MM.yyyy";
     return (
-      <LocalizationProvider dateAdapter={AdapterDateFns} utils={DateFnsUtils} locale={props.locale}>
+      <LocalizationProvider
+        dateAdapter={AdapterDateFns}
+        utils={DateFnsUtils}
+        locale={props.locale}
+      >
         <DatePicker
-          renderInput={(props) => <TextField {...props} />} 
+          renderInput={(props) => <TextField {...props} />}
           inputFormat={dateFormat}
           value={props.value || null}
           onChange={props.onChange}
@@ -105,9 +118,13 @@ export default function MTableEditField(props: ITableEditField) {
 
   const renderTimeField = () => {
     return (
-      <LocalizationProvider dateAdapter={AdapterDateFns}  utils={DateFnsUtils} locale={props.locale}>
+      <LocalizationProvider
+        dateAdapter={AdapterDateFns}
+        utils={DateFnsUtils}
+        locale={props.locale}
+      >
         <TimePicker
-          renderInput={(props) => <TextField {...props} />} 
+          renderInput={(props) => <TextField {...props} />}
           inputFormat="HH:mm:ss"
           value={props.value || null}
           onChange={props.onChange}
@@ -125,10 +142,14 @@ export default function MTableEditField(props: ITableEditField) {
 
   const renderDateTimeField = () => {
     return (
-      <LocalizationProvider dateAdapter={AdapterDateFns} utils={DateFnsUtils} locale={props.locale}>
+      <LocalizationProvider
+        dateAdapter={AdapterDateFns}
+        utils={DateFnsUtils}
+        locale={props.locale}
+      >
         <DateTimePicker
           //{...this.getProps()}
-          renderInput={(props) => <TextField {...props} />} 
+          renderInput={(props) => <TextField {...props} />}
           inputFormat="dd.MM.yyyy HH:mm:ss"
           value={props.value || null}
           onChange={props.onChange}
@@ -137,7 +158,7 @@ export default function MTableEditField(props: ITableEditField) {
             style: {
               fontSize: 13,
             },
-            "aria-label": `${props.columnDef.title}: press space to edit`, 
+            "aria-label": `${props.columnDef.title}: press space to edit`,
           }}
         />
       </LocalizationProvider>

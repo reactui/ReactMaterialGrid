@@ -1,4 +1,4 @@
-import {TableCell, TableRow, IconButton} from "@mui/material";
+import { TableCell, TableRow, IconButton } from "@mui/material";
 import * as React from "react";
 
 export default function MTableGroupRow(props: any) {

@@ -1,4 +1,4 @@
-import { TableCell, TableRow, Typography }  from "@mui/material";
+import { TableCell, TableRow, Typography } from "@mui/material";
 import { useState } from "react";
 import { byString, setByString } from "../utils";
 import * as CommonValues from "../utils/common-values";
