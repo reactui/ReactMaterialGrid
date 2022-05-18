@@ -235,17 +235,12 @@ export default class MaterialTable extends React.Component<IMaterialTableProps, 
       ...this.defaultProps.options,
       ...calculatedProps.options,
     };
-    calculatedProps.classes = {
-      ...this.defaultProps.classes,
-      ...calculatedProps.classes,
-    };
-
-    calculatedProps.theme = { ...this.defaultProps.theme ,...calculatedProps.theme,
-    };
-
+    calculatedProps.classes = {...this.defaultProps.classes,...calculatedProps.classes};
+    calculatedProps.theme = { ...this.defaultProps.theme ,...calculatedProps.theme};
+    
     const localization = {
       ...this.defaultProps.localization.body,
-      //...calculatedProps.localization.body,
+      ...calculatedProps?.localization?.body,
     };
 
     calculatedProps.actions = [...(calculatedProps.actions || [])];
@@ -1090,7 +1085,7 @@ export default class MaterialTable extends React.Component<IMaterialTableProps, 
               icons={props.icons}
               localization={{
                 ...this.defaultProps.localization.grouping,
-                ...props.localization.grouping,
+                ...props.localization?.grouping,
               }}
               groupColumns={this.state.columns
                 .filter((col) => col.tableData.groupOrder > -1)
@@ -1254,8 +1249,7 @@ export default class MaterialTable extends React.Component<IMaterialTableProps, 
       style={{
         display: "table",
         width: "100%",
-        height: "100%",
-        backgroundColor: fade(props.theme.palette.background.paper, 0.7),
+        height: "100%"
       }}
     >
       <div
