@@ -107,6 +107,7 @@ function MTableToolbar(props: any) {
       ...defaultProps.localization,
       ...props.localization,
     };
+
     if (props.search) {
       return (
         <TextField
@@ -336,6 +337,7 @@ function MTableToolbar(props: any) {
         : props.showTitle
         ? props.title
         : null;
+
     return (
       <Toolbar
         className={classNames(classes.root, {
@@ -354,6 +356,13 @@ function MTableToolbar(props: any) {
       </Toolbar>
     );
   };
+
+
+  return (
+    <>
+    {render()}
+    </>
+  )
 }
 
 const defaultProps = {

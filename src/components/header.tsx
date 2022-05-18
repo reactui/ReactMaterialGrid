@@ -48,13 +48,11 @@ const MTableHeader = (props : IHeaderProps) :JSX.Element => {
     });
 
     useEffect(() => {
-      console.log('will mount');
       document.addEventListener("mousemove", handleMouseMove);
       document.addEventListener("mouseup", handleMouseUp);
       return () => {
         document.removeEventListener("mousemove", handleMouseMove);
         document.removeEventListener("mouseup", handleMouseUp);
-        console.log('will unmount');
       }
     }, []);  
 

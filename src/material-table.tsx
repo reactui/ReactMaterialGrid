@@ -792,12 +792,8 @@ export default class MaterialTable extends React.Component<IMaterialTableProps, 
     const localProps = this.getProps();
 
     if (localProps.options.paging) {
-      const localization = {
-        ...this.defaultProps.localization.pagination,
-        //localization.pagination
-        //...this.props.localization.pagination,
-      };
-
+      
+      const localization = { ...this.defaultProps.localization.pagination, ...localProps.localization?.pagination };
       const isOutsidePageNumbers = this.isOutsidePageNumbers(localProps);
       const currentPage = isOutsidePageNumbers
         ? Math.min(
