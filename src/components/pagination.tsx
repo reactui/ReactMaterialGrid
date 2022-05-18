@@ -3,7 +3,6 @@ import { withStyles } from "@material-ui/core/styles";
 import { IconButton, Tooltip, Typography } from "@mui/material";
 import { merge } from 'lodash'
 
-
 function MTablePaginationInner(props: any) {
   const {
     classes,
@@ -15,16 +14,9 @@ function MTablePaginationInner(props: any) {
     onChangePage,
   } = props;
 
-  // const localization = {
-  //   ...defaultProps.localization,
-  //   ...props.localization,
-  // };
-
   const localization = merge(defaultProps.localization, props.localization);
 
-
-
-  console.log(props.localization)
+  //const localization = defaultProps.localization;
 
   const handleFirstPageButtonClick = (event: any) => {
     onChangePage(event, 0);
