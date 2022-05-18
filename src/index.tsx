@@ -3,6 +3,9 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import MaterialTable from "./material-table";
+
+export default MaterialTable;
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
