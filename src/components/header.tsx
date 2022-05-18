@@ -1,10 +1,9 @@
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { TableHead, TableRow, TableCell, TableSortLabel, Checkbox, Tooltip } from "@mui/material"
 import withStyles, { CSSProperties } from "@material-ui/core/styles/withStyles";
 import { Draggable } from "react-beautiful-dnd";
 import * as CommonValues from "../utils/common-values";
-import equal from "fast-deep-equal";
 
 interface IHeaderState {
   lastAdditionalWidth: any

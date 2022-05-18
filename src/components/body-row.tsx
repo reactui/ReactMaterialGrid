@@ -339,7 +339,7 @@ const MTableBodyRow = props => {
     let style = {
       transition: "all ease 300ms",
       cursor: "",
-      opacity: 0.5
+      opacity: 1
     };
 
     if (typeof options.rowStyle === "function") {
