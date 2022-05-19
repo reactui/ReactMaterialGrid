@@ -13,6 +13,7 @@ import MaterialTable from './material-table'
 
 function App() {
   let direction = "ltr"; // direction = 'rtl';
+  const REACT_VERSION = React.version;
   //const theme = createTheme();
 
   const theme = createTheme({
@@ -27,10 +28,12 @@ function App() {
   });
 
   const materialTableRef = React.createRef();
+  
   const [state, setState] = useState({ initialFormData: {} });
 
   return (
     <div style={{ maxWidth: "100%" }}>
+      {REACT_VERSION}<br></br>
       <ThemeProvider theme={theme}>
 
         French localization
