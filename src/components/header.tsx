@@ -134,8 +134,8 @@ const MTableHeader = (props: IHeaderProps): JSX.Element => {
       .map((columnDef: any, index) => {
         let content = columnDef.title;
 
-        // if (props.draggable) {
-        if (false) {
+        if (props.draggable) {
+        //if (false) {
           content = (
             <Draggable
               key={columnDef.tableData.id}
