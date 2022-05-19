@@ -1,7 +1,7 @@
-import { Size } from "@material-ui/core";
-
-export const elementSize = (props: any): Size => "medium";
+//export const elementSize = (props: any): { 'small' | 'medium' | undefined}  => "medium";
 //props.options.padding === "default" ? "medium" : "small";
+
+export const elementSize = (props: any) : 'small' | 'medium' | undefined => 'medium';
 
 export const baseIconSize = (props: any) =>
   elementSize(props) === "medium" ? 48 : 32;

@@ -11,14 +11,16 @@ import {
 // @ts-ignore
 import DoubleScrollbar from "react-double-scrollbar";
 import { MTablePagination, MTableSteppedPagination } from "./components";
+import * as MComponents from "./components";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import DataManager from "./utils/data-manager";
 import { debounce } from "debounce";
 import equal from "fast-deep-equal";
-import { withStyles } from "@material-ui/core";
-import * as CommonValues from "./utils/common-values";
-import * as MComponents from "./components";
-import { fade } from "@material-ui/core/styles/colorManipulator";
+import { withStyles } from "@mui/styles";
+import * as CommonValues from "./utils/common-values"
+
+import { alpha } from '@mui/material/styles';
+
 import React from "react";
 
 interface IMaterialTableProps {
@@ -1285,7 +1287,7 @@ export default class MaterialTable extends React.Component<
         display: "table",
         width: "100%",
         height: "100%",
-        backgroundColor: fade(props.theme.palette.background.paper, 0.7),
+        backgroundColor: alpha(props.theme.palette.background.paper, 0.7),
       }}
     >
       <div
@@ -1308,7 +1310,8 @@ export default class MaterialTable extends React.Component<
 
   Container = (props: any) => <Paper elevation={2} {...props} />;
 
-  defaultProps = {
+  
+  defaultProps:any = {
     actions: [],
     classes: {},
     columns: [],

@@ -7,7 +7,7 @@ import {
   Checkbox,
 } from "@mui/material";
 import * as React from "react";
-import * as CommonValues from "../utils/common-values";
+import * as CommonValues from "../utils/common-values"
 
 const MTableBodyRow = (props) => {
   const {

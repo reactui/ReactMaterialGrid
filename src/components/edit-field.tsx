@@ -100,7 +100,7 @@ export default function MTableEditField(props: ITableEditField) {
         locale={props.locale}
       >
         <DatePicker
-          renderInput={(props) => <TextField {...props} />}
+          renderInput={(props:any) => <TextField {...props} />}
           inputFormat={dateFormat}
           value={props.value || null}
           onChange={props.onChange}
@@ -124,7 +124,7 @@ export default function MTableEditField(props: ITableEditField) {
         locale={props.locale}
       >
         <TimePicker
-          renderInput={(props) => <TextField {...props} />}
+          renderInput={(props:any) => <TextField {...props} />}
           inputFormat="HH:mm:ss"
           value={props.value || null}
           onChange={props.onChange}
@@ -149,7 +149,8 @@ export default function MTableEditField(props: ITableEditField) {
       >
         <DateTimePicker
           //{...this.getProps()}
-          renderInput={(props) => <TextField {...props} />}
+          // renderInput={(props) => <TextField {...props} />}
+          renderInput={(props) => <TextField  />}
           inputFormat="dd.MM.yyyy HH:mm:ss"
           value={props.value || null}
           onChange={props.onChange}

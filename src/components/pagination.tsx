@@ -1,4 +1,4 @@
-import { withStyles } from "@material-ui/core/styles";
+import { withStyles } from "@mui/styles";
 import { IconButton, Tooltip, Typography } from "@mui/material";
 import { merge } from "lodash";
 
@@ -149,6 +149,7 @@ const actionsStyles = (theme: any) => ({
   },
 });
 
+// @ts-ignore
 const MTablePagination = withStyles(actionsStyles, { withTheme: true })(
   MTablePaginationInner
 );

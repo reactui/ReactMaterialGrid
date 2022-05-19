@@ -8,7 +8,8 @@ import {
   Checkbox,
   Tooltip,
 } from "@mui/material";
-import withStyles, { CSSProperties } from "@material-ui/core/styles/withStyles";
+//import withStyles from "@material-ui/core/styles/withStyles";
+import { withStyles } from "@mui/styles";
 import { Draggable } from "react-beautiful-dnd";
 import * as CommonValues from "../utils/common-values";
 
@@ -22,7 +23,7 @@ interface IHeaderProps {
   onOrderChange: any;
   onAllSelected: any;
   scrollWidth: number;
-  headerStyle: CSSProperties | undefined;
+  headerStyle: any;
   options: any;
   columns: [];
   draggable: boolean;
@@ -133,7 +134,8 @@ const MTableHeader = (props: IHeaderProps): JSX.Element => {
       .map((columnDef: any, index) => {
         let content = columnDef.title;
 
-        if (props.draggable) {
+        // if (props.draggable) {
+        if (false) {
           content = (
             <Draggable
               key={columnDef.tableData.id}

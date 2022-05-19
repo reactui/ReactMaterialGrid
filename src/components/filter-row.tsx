@@ -49,7 +49,6 @@ interface ITableFilterRow {
 }
 
 export default function MTableFilterRow(props: ITableFilterRow) {
-  console.log(props);
 
   const getLocalizationData = () => ({
     ...defaultProps.localization,
@@ -175,7 +174,7 @@ export default function MTableFilterRow(props: ITableFilterRow) {
   const renderDateTypeFilter = (columnDef: any) => {
     const onDateInputChange = (date: any) =>
       props.onFilterChanged(columnDef.tableData.id, date);
-    const pickerProps = {
+    const pickerProps:any = {
       value: columnDef.tableData.filterValue || null,
       onChange: onDateInputChange,
       placeholder: getLocalizedFilterPlaceHolder(columnDef),
@@ -187,21 +186,24 @@ export default function MTableFilterRow(props: ITableFilterRow) {
       dateInputElement = (
         <DatePicker
           {...pickerProps}
-          renderInput={(pickerProps) => <TextField {...pickerProps} />}
+          renderInput={(pickerProps) => <TextField  />}
+          // renderInput={(pickerProps) => <TextField {...pickerProps} />}
         />
       );
     } else if (columnDef.type === "datetime") {
       dateInputElement = (
         <DateTimePicker
           {...pickerProps}
-          renderInput={(pickerProps) => <TextField {...pickerProps} />}
+          renderInput={(pickerProps) => <TextField  />}
+          // renderInput={(pickerProps) => <TextField {...pickerProps} />}
         />
       );
     } else if (columnDef.type === "time") {
       dateInputElement = (
         <TimePicker
           {...pickerProps}
-          renderInput={(pickerProps) => <TextField {...pickerProps} />}
+          renderInput={(pickerProps) => <TextField  />}
+          // renderInput={(pickerProps) => <TextField {...pickerProps} />}
         />
       );
     }

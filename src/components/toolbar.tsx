@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import { lighten } from "@mui/material/styles";
 import classNames from "classnames";
-import { withStyles } from "@material-ui/core";
+import { withStyles } from "@mui/styles";
 
 // @ts-ignore
 import { CsvBuilder } from "filefy";

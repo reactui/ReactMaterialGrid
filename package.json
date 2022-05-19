@@ -1,16 +1,37 @@
 {
   "name": "@reactuicomponents/reactmaterialgrid",
-  "version": "0.1.0",
   "private": false,
+  "author": "React UI",
+  "sideEffects": false,
+  "version": "0.0.0-development",
+  "homepage": "https://react.com/",
+  "license": "MIT",
+  "source": "src/comonents.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.m.js",
+  "types": "dist/index.d.ts",
+  "keywords": [
+    "react",
+    "reactjs",
+    "grid",
+    "material",
+    "ui",
+    "typescript",
+    "table",
+    "datatable"
+  ],
+  "files": [
+    "dist"
+  ],
   "dependencies": {
     "@date-io/date-fns": "^1.1.0",
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
-    "@material-ui/icons": "^4.11.3",
-    "@material-ui/pickers": "^3.2.2",
-    "@mui/lab": "^5.0.0-alpha.81",
-    "@mui/material": "^5.7.0",
+    "@mui/lab": "^5.0.0-alpha.82",
+    "@mui/material": "^5.8.0",
+    "@mui/styles": "^5.8.0",
     "@mui/x-date-pickers": "^5.0.0-alpha.3",
+    "@reactuicomponents/reactmaterialgrid": "file:../components",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.2.0",
     "@testing-library/user-event": "^13.5.0",
@@ -27,17 +48,19 @@
     "jspdf-autotable": "3.5.9",
     "lodash": "^4.17.21",
     "prop-types": "^15.6.2",
-    "react": "^18.1.0",
+    "react": "^18.0.1",
     "react-beautiful-dnd": "^13.1.0",
-    "react-dom": "^18.1.0",
+    "react-dom": "^18.0.1",
     "react-double-scrollbar": "^0.0.15",
     "react-scripts": "5.0.1",
     "typescript": "^4.6.4",
     "web-vitals": "^2.1.4"
   },
-  "peerDependencies": {
-    "@date-io/core": "^1.3.6",
-    "@material-ui/core": "^4.0.1"
+  "devDependencies": {
+    "@types/debounce": "^1.2.1",
+    "@types/react-beautiful-dnd": "^13.1.2",
+    "prettier": "^2.6.2",
+    "tslint": "^6.1.3"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -45,7 +68,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "format": "prettier --write src/**/*.{ts,tsx} */**/.tsx",
-    "lint": "tslint --project ."
+    "lint": "tslint --project .",
+    "publish": "npm publish --access public"
   },
   "eslintConfig": {
     "extends": [
@@ -65,10 +89,10 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {
-    "@types/debounce": "^1.2.1",
-    "@types/react-beautiful-dnd": "^13.1.2",
-    "prettier": "^2.6.2",
-    "tslint": "^6.1.3"
+  "prettier": {
+    "printWidth": 140,
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "es5"
   }
 }

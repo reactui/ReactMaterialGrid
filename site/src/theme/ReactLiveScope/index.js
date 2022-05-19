@@ -1,6 +1,8 @@
 import React from 'react';
-import MaterialTable from '../../../../src/material-table'
+import { useState } from 'react';
+import { MaterialUiPickersDate } from '@material-ui/pickers/typings/date';
 import {data, columns} from '../../../../src/data/data'
+
 
 
 //import ReactLiveScope from '@theme-original/ReactLiveScope';
@@ -20,7 +22,6 @@ const ReactLiveScope = {
   React,
   ...React,
   MaterialTable,
-  //...MaterialTable,
   data,
   columns
 };
